@@ -14,111 +14,162 @@
 <body>
 <a class="skip" href="#larry">Skip to the gift</a>
 
-<!-- PROTOTYPE NOTE: every letter and card on this page is the approved set published at
-     library.scholarsequity.org. Anything conceptual is labeled "Concept" or "Example". -->
+<!-- Every letter and card here is the approved set published at library.scholarsequity.org.
+     Anything conceptual is labeled "Concept", "Illustration" or "Example". -->
 
 <header class="nav" id="nav">
   <a class="nav__brand" href="#top">You Were Part of My Story <span class="nav__by">· Scholars Equity Network</span></a>
   <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
   <nav class="nav__links" id="navLinks" aria-label="Sections">
-    <a href="#larry">For Larry</a>
-    <a href="#stories">The stories</a>
-    <a href="#ripple">The ripple</a>
-    <a href="#gift">Pass it along</a>
-    <a href="#living">What's next</a>
-    <a href="#sen">Our community</a>
+    <a href="#larry">The Letter That Started It</a>
+    <a href="#stories">The Ripples</a>
+    <a href="#thank">Thank Someone</a>
+    <a href="#sen">Keep the Ripples Going</a>
   </nav>
 </header>
 
 <main id="top">
 
-<!-- 1. OPENING -->
+<!-- ================= OPENING ================= -->
 <section class="hero" aria-labelledby="heroTitle">
   <canvas id="heroCanvas" aria-hidden="true"></canvas>
   <div class="hero__text">
     <p class="eyebrow eyebrow--gold">A gift from Scholars Equity Network</p>
     <h1 id="heroTitle">You were part<br>of my story.</h1>
     <p class="hero__sub">To everyone who believed in us before we could see what was possible.</p>
-    <a class="btn btn--gold" href="#larry">Begin</a>
+    <p class="hero__context">It began as a thank-you to one person. It became a way to thank everyone who helped us get here.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--gold" href="#larry">Begin</a>
+      <a class="btn btn--ghost" href="#thank">Thank someone</a>
+    </div>
     <p class="hero__hint" id="heroHint">Tap anywhere to send out a ripple.</p>
   </div>
   <a class="hero__scroll" href="#larry" aria-label="Scroll to the next section"><span></span></a>
 </section>
 
-<!-- 2. FOR LARRY -->
-<section class="sec sec--ivory" id="larry" aria-labelledby="larryTitle">
+<!-- ================= 1. IT STARTED WITH A LETTER (Larry) ================= -->
+<section class="sec sec--ivory sec--larry" id="larry" aria-labelledby="larryTitle">
   <div class="wrap wrap--narrow">
-    <p class="eyebrow">For Larry Griffith</p>
-    <h2 id="larryTitle" class="display">You wrote to us.<br>We are writing back.</h2>
-    <div class="faces faces--row" id="larryFaces" aria-hidden="true"></div>
-    <div class="prose">
-      <p>On August 14th, Larry, you wrote a letter to 20,000 scholars. <span id="letterCount">37</span> scholars wrote back, and this is where those letters live.</p>
-      <p>You have been a longtime champion of the Gates Millennium Scholars program, and Scholars Equity Network wanted you to see what grew from it: classrooms, clinics, courtrooms, kitchens, boardrooms, and a community that keeps reaching back for the next person.</p>
-      <p>You would be the first to say you were one of many. There was a counselor who handed someone an application. A teacher who said <em>you should try.</em> A family member who made room. A stranger who quietly opened a door. This gift is for them too.</p>
+    <div class="larry-panel">
+      <p class="eyebrow">The letter that started it</p>
+      <h2 id="larryTitle" class="display">It started<br>with a letter.</h2>
+      <div class="faces faces--row" id="larryFaces" aria-hidden="true"></div>
+      <div class="prose">
+        <p>On August 14th, <strong>Larry Griffith</strong> wrote a letter to 20,000 Gates Millennium Scholars. <span id="letterCount">37</span> scholars wrote back.</p>
+        <p>Larry has been a longtime champion of the Gates Millennium Scholars program. In their letters, scholars thanked him and told him what the scholarship made possible: classrooms, clinics, courtrooms, kitchens, boardrooms, and a community that keeps reaching back for the next person.</p>
+        <p class="prose__big">Thank you, Larry. These are our answers.</p>
+      </div>
     </div>
-    <p class="sign">With gratitude,<br><em>Scholars Equity Network</em></p>
-    <a class="btn btn--navy" href="#stories">Read the letters</a>
+  </div>
+
+  <div class="wrap">
+    <div class="shelf-head">
+      <h3>The original letters</h3>
+      <div class="shelf-ctrl">
+        <button class="shelf-btn" id="shelfPrev" aria-label="Show earlier letters">←</button>
+        <button class="shelf-btn" id="shelfNext" aria-label="Show more letters">→</button>
+      </div>
+    </div>
+    <div class="shelf" id="letterShelf" tabindex="0" aria-label="The original letters. Scroll sideways or use the arrows."></div>
+    <p class="shelf-foot"><button class="link" id="shelfToggle" aria-expanded="false">See all of them at once</button></p>
+  </div>
+
+  <div class="wrap wrap--narrow larry-next">
+    <p>Read together, the letters show how far one opportunity can travel.</p>
+    <a class="btn btn--navy" href="#stories">Follow the ripples</a>
   </div>
 </section>
 
-<!-- 3. STORIES -->
-<section class="sec sec--paper" id="stories" aria-labelledby="storiesTitle">
-  <div class="wrap">
-    <p class="eyebrow">The letters</p>
-    <h2 id="storiesTitle" class="display display--sm">Every letter is a thread.</h2>
-    <p class="lede">Wander. Open any letter to read it in full, or follow the threads between us.</p>
+<!-- ================= THE RIPPLES (stories, outward) ================= -->
+<section class="sec sec--navy" id="stories" aria-labelledby="storiesTitle">
+  <div class="wrap wrap--mid">
+    <p class="welcome" id="welcome" hidden><strong>You're here because someone you helped wanted you to see this.</strong> Below are stories from other Gates Millennium Scholars, and some of the people who made their journeys possible.</p>
+    <p class="eyebrow eyebrow--gold">The ripples</p>
+    <h2 id="storiesTitle" class="display display--sm light">One opportunity. Then another. Then another.</h2>
+    <p class="lede light">Every scholar tells what their opportunity made possible, and how they pass it on. Touch a face and watch it travel.</p>
 
-    <div class="tabs" role="tablist" aria-label="Ways to explore the letters">
-      <button role="tab" id="tab-all" aria-controls="panel-all" aria-selected="true">All the voices</button>
+    <div class="tabs tabs--dark" role="tablist" aria-label="Ways to explore the stories">
+      <button role="tab" id="tab-ripple" aria-controls="panel-ripple" aria-selected="true">Watch it ripple</button>
       <button role="tab" id="tab-theme" aria-controls="panel-theme" aria-selected="false" tabindex="-1">By how they give back</button>
       <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false" tabindex="-1">The constellation</button>
     </div>
 
-    <div id="panel-all" role="tabpanel" aria-labelledby="tab-all"><div class="grid" id="gridAll"></div></div>
+    <div id="panel-ripple" role="tabpanel" aria-labelledby="tab-ripple">
+      <div class="ripple-stage" id="rippleStage">
+        <canvas id="rippleCanvas" aria-hidden="true"></canvas>
+        <div class="ripple-core" aria-hidden="true"><span>One<br>opportunity</span></div>
+      </div>
+      <div class="ripple-caption" id="rippleCaption" aria-live="polite">
+        <p class="ripple-caption__who">Choose a scholar</p>
+        <p class="ripple-caption__line">Each one wrote about how they pass it on. Their own words appear here.</p>
+      </div>
+      <div class="ripple-actions">
+        <button class="btn btn--ghost" id="rippleWatch">Watch it ripple</button>
+        <button class="btn btn--ghost" id="rippleNext">Next voice</button>
+      </div>
+      <p class="concept"><strong>Concept.</strong> The faint lights at the edge stand for the people each scholar has helped. We haven't counted them, and we won't invent a number. Only the scholars' faces and words are real.</p>
+    </div>
+
     <div id="panel-theme" role="tabpanel" aria-labelledby="tab-theme" hidden>
-      <p class="note">Grouped by us from what each scholar wrote. These are not official categories, and a scholar can belong to more than one.</p>
+      <p class="note note--light">Grouped by us from what each scholar wrote. These are not official categories, and a scholar can belong to more than one.</p>
       <div id="themeGroups"></div>
     </div>
+
     <div id="panel-star" role="tabpanel" aria-labelledby="tab-star" hidden>
-      <p class="note">Each light is a scholar. Lines join scholars who give back in a similar way (grouped by us, from their letters). Choose a thread to follow it.</p>
-      <div class="chips" id="starChips" role="group" aria-label="Follow a thread"></div>
+      <p class="note note--light">Each light is a scholar. Lines join scholars who give back in a similar way (grouped by us, from their letters). Choose a thread to follow it.</p>
+      <div class="chips chips--dark" id="starChips" role="group" aria-label="Follow a thread"></div>
       <div class="constellation" id="constellation">
         <svg class="constellation__lines" id="starLines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
       </div>
       <p class="constellation__label" id="starLabel" aria-live="polite">Hover or tap a light to see who it is.</p>
     </div>
+
+    <!-- the people inside the letters -->
+    <div class="inside">
+      <p class="eyebrow eyebrow--gold">Look closely</p>
+      <h3 class="inside__title">Inside these letters, you'll find other people.</h3>
+      <p class="inside__sub">Each scholar wrote about their own journey. Woven through them, in their own words, are the people who made those journeys possible.</p>
+      <div class="inside__grid" id="insideGrid"></div>
+    </div>
   </div>
 </section>
 
-<!-- 5. RIPPLE -->
-<section class="sec sec--navy" id="ripple" aria-labelledby="rippleTitle">
-  <div class="wrap wrap--mid">
-    <p class="eyebrow eyebrow--gold">The ripple</p>
-    <h2 id="rippleTitle" class="display display--sm light">One opportunity. Then another. Then another.</h2>
-    <p class="lede light">Touch a scholar and watch it travel outward.</p>
-
-    <div class="ripple-stage" id="rippleStage">
-      <canvas id="rippleCanvas" aria-hidden="true"></canvas>
-      <div class="ripple-core" aria-hidden="true"><span>One<br>opportunity</span></div>
+<!-- ================= 2. NONE OF US GOT HERE ALONE (the turn) ================= -->
+<section class="turn s1" id="turn" aria-labelledby="turnTitle">
+  <h2 id="turnTitle" class="sr">None of us got here alone</h2>
+  <div class="turn__inner">
+    <div class="turn__stage" aria-hidden="true">
+      <div class="turn__square" id="turnSquare">
+        <svg viewBox="0 0 100 100" id="turnSvg"></svg>
+      </div>
+      <p class="turn__caption">Illustration. Each small light stands for someone who helped. We have not mapped real relationships.</p>
     </div>
-    <div class="ripple-caption" id="rippleCaption" aria-live="polite">
-      <p class="ripple-caption__who">Choose a scholar</p>
-      <p class="ripple-caption__line">Each one wrote about how they pay it forward. Their own words will appear here.</p>
+    <div class="turn__beats">
+      <div class="beat" data-beat="1">
+        <p class="beat__text beat__text--lead">We began by writing letters to Larry.</p>
+      </div>
+      <div class="beat" data-beat="2">
+        <p class="beat__text">As we reflected on the opportunities his leadership helped make possible, we were reminded of something bigger.</p>
+      </div>
+      <div class="beat" data-beat="3">
+        <h3 class="beat__big">None of us got here alone.</h3>
+        <p class="beat__text">Behind every Gates Scholar is a constellation of people who believed in us. A counselor who handed us an application. A teacher who wrote a recommendation. A family member who made sacrifices. Someone who saw possibility in us before we could see it ourselves.</p>
+      </div>
+      <div class="beat" data-beat="4">
+        <p class="beat__text">Many of those people may never know how far their kindness traveled.</p>
+        <p class="beat__ask">What if we told them?</p>
+        <a class="btn btn--gold" href="#thank">Thank someone</a>
+      </div>
     </div>
-    <div class="ripple-actions">
-      <button class="btn btn--ghost" id="rippleWatch">Watch it ripple</button>
-      <button class="btn btn--ghost" id="rippleNext">Next voice</button>
-    </div>
-    <p class="concept"><strong>Concept.</strong> The faint lights at the edge stand for the people each scholar has helped: students, patients, colleagues, neighbors. We haven't counted them, and we won't invent a number. Only the scholars' faces and words are real.</p>
   </div>
 </section>
 
-<!-- 4. PASS IT ALONG -->
-<section class="sec sec--ivory" id="gift" aria-labelledby="giftTitle">
+<!-- ================= 3. WHO WAS PART OF YOUR STORY? ================= -->
+<section class="sec sec--ivory" id="thank" aria-labelledby="thankTitle">
   <div class="wrap">
-    <p class="eyebrow">Pass this gift along</p>
-    <h2 id="giftTitle" class="display display--sm">Who helped you get here?</h2>
-    <p class="lede">They may never have known what happened next. Tell them, and send them this.</p>
+    <p class="eyebrow">Thank someone</p>
+    <h2 id="thankTitle" class="display display--sm">Who was part of your story?</h2>
+    <p class="lede">The counselor who handed you an application. The teacher who said <em>you should try.</em> The person who wrote your recommendation. The family member who gave something up. The mentor who believed in you. They may never have known what happened next. Tell them.</p>
 
     <div class="builder">
       <form class="builder__form" id="giftForm" autocomplete="off" novalidate>
@@ -163,83 +214,71 @@
           <button class="btn btn--ghost-dark" id="shareBtn">Share…</button>
           <button class="btn btn--ghost-dark" id="saveBtn">Save card as a picture</button>
         </div>
+        <button class="link link--block" id="previewBtn">See what they'll see when they open it</button>
         <p class="status" id="giftStatus" role="status" aria-live="polite"></p>
-        <p class="tiny">The link below goes to this collection. <span id="linkShown"></span></p>
+        <p class="tiny">Your card travels as a private link. When they open it, they see your message first, then a short welcome and the stories of other scholars. They don't need to know anything else.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 6. LIVING COLLECTION -->
-<section class="sec sec--paper" id="living" aria-labelledby="livingTitle">
-  <div class="wrap wrap--mid">
-    <p class="eyebrow">What this could become</p>
-    <h2 id="livingTitle" class="display display--sm">A permanent home for gratitude.</h2>
-    <p class="lede">This is a concept preview. Nothing here is collected or stored yet.</p>
-
-    <div class="tabs tabs--small" role="tablist" aria-label="Ideas for what comes next">
-      <button role="tab" id="lt-1" aria-controls="lp-1" aria-selected="true">For scholars</button>
-      <button role="tab" id="lt-2" aria-controls="lp-2" aria-selected="false" tabindex="-1">For the people who helped</button>
-      <button role="tab" id="lt-3" aria-controls="lp-3" aria-selected="false" tabindex="-1">For the community</button>
-    </div>
-
-    <div role="tabpanel" id="lp-1" aria-labelledby="lt-1" class="live">
-      <div class="live__text">
-        <h3>Add a thread of your own.</h3>
-        <p>Scholars could tell the story of someone who helped them, in their own words, and see it join the collection beside the letters to Larry.</p>
-      </div>
-      <figure class="mock">
-        <figcaption class="mock__tag">Example, not a real story</figcaption>
-        <p class="mock__quote">"My counselor never knew I got in. I'd like her to know."</p>
-        <p class="mock__by">A scholar, writing about a counselor</p>
-        <svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg>
-      </figure>
-    </div>
-
-    <div role="tabpanel" id="lp-2" aria-labelledby="lt-2" class="live" hidden>
-      <div class="live__text">
-        <h3>See where it went.</h3>
-        <p>A teacher or counselor who receives a thank-you could follow the thread forward and see the life it touched, and the lives that life has touched since.</p>
-      </div>
-      <figure class="mock">
-        <figcaption class="mock__tag">Example, not a real story</figcaption>
-        <p class="mock__quote">"You were part of my story. Here is what your belief in me made possible."</p>
-        <p class="mock__by">The note a recipient might open</p>
-        <svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg>
-      </figure>
-    </div>
-
-    <div role="tabpanel" id="lp-3" aria-labelledby="lt-3" class="live" hidden>
-      <div class="live__text">
-        <h3>A tapestry that keeps growing.</h3>
-        <p>Over time, the letters, the thank-yous, and the people behind them could weave into one living picture of how opportunity travels from person to person.</p>
-      </div>
-      <figure class="mock mock--weave" aria-label="Concept: threads weaving together">
-        <figcaption class="mock__tag">Concept illustration</figcaption>
-        <svg viewBox="0 0 220 120" aria-hidden="true" id="weave"></svg>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- 7. SEN -->
+<!-- ================= 4. KEEP THE RIPPLES GOING ================= -->
 <section class="sec sec--navy" id="sen" aria-labelledby="senTitle">
-  <div class="wrap wrap--narrow center">
-    <p class="eyebrow eyebrow--gold">Scholars Equity Network</p>
-    <h2 id="senTitle" class="display display--sm light">None of us got here alone.</h2>
-    <p class="lede light">The scholarship invested in each of us as individuals. Scholars Equity Network is where scholars invest in one another, through friendship, mentorship, and the doors we open for each other.</p>
-    <a class="btn btn--gold" href="https://www.scholarsequity.org" target="_blank" rel="noopener noreferrer">Meet the community</a>
-    <p class="tiny light">Scholars Equity Network · scholarsequity.org</p>
+  <div class="wrap wrap--mid">
+    <div class="center">
+      <p class="eyebrow eyebrow--gold">Keep the ripples going</p>
+      <h2 id="senTitle" class="display display--sm light">None of us got here alone.<br>None of us has to keep going alone.</h2>
+      <p class="lede light">Scholars Equity Network is a community of more than 20,000 Gates Millennium Scholars alumni. The scholarship invested in each of us as individuals. We exist so scholars can invest in one another, through friendship, mentorship, and the doors we open for each other.</p>
+      <a class="btn btn--gold" href="https://www.scholarsequity.org" target="_blank" rel="noopener noreferrer">Meet the community</a>
+      <p class="tiny light">Scholars Equity Network · scholarsequity.org</p>
+    </div>
+
+    <div class="next-up" id="living">
+      <p class="eyebrow eyebrow--gold">What this could become</p>
+      <h3 class="next-up__title">A permanent home for gratitude.</h3>
+      <p class="next-up__sub">A concept preview. Nothing here is collected or stored yet.</p>
+      <div class="tabs tabs--small tabs--dark" role="tablist" aria-label="Ideas for what comes next">
+        <button role="tab" id="lt-1" aria-controls="lp-1" aria-selected="true">For scholars</button>
+        <button role="tab" id="lt-2" aria-controls="lp-2" aria-selected="false" tabindex="-1">For the people who helped</button>
+        <button role="tab" id="lt-3" aria-controls="lp-3" aria-selected="false" tabindex="-1">For the community</button>
+      </div>
+      <div role="tabpanel" id="lp-1" aria-labelledby="lt-1" class="live">
+        <div class="live__text"><h3>Add a thread of your own.</h3><p>Scholars could tell the story of someone who helped them, in their own words, and see it join the collection beside the letters.</p></div>
+        <figure class="mock"><figcaption class="mock__tag">Example, not a real story</figcaption><p class="mock__quote">"My counselor never knew I got in. I'd like her to know."</p><p class="mock__by">A scholar, writing about a counselor</p><svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg></figure>
+      </div>
+      <div role="tabpanel" id="lp-2" aria-labelledby="lt-2" class="live" hidden>
+        <div class="live__text"><h3>See where it went.</h3><p>A teacher or counselor who receives a thank-you could follow the thread forward and see the life it touched, and the lives that life has touched since.</p></div>
+        <figure class="mock"><figcaption class="mock__tag">Example, not a real story</figcaption><p class="mock__quote">"You were part of my story. Here is what your belief in me made possible."</p><p class="mock__by">The note a recipient might open</p><svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg></figure>
+      </div>
+      <div role="tabpanel" id="lp-3" aria-labelledby="lt-3" class="live" hidden>
+        <div class="live__text"><h3>A tapestry that keeps growing.</h3><p>Over time, the letters, the thank-yous, and the people behind them could weave into one living picture of how opportunity travels from person to person.</p></div>
+        <figure class="mock mock--weave" aria-label="Concept: threads weaving together"><figcaption class="mock__tag">Concept illustration</figcaption><svg viewBox="0 0 220 120" aria-hidden="true" id="weave"></svg></figure>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="foot">
   <p>A gift from Scholars Equity Network, the community of Gates Millennium Scholars investing in one another.</p>
-  <p class="tiny">Prototype for review. Letters and cards are the approved set published at library.scholarsequity.org. Sections marked "Concept" or "Example" are illustrations.</p>
+  <p class="tiny">Prototype for review. Letters and cards are the approved set published at library.scholarsequity.org. Sections marked "Concept", "Illustration" or "Example" are not real data.</p>
 </footer>
 
-<!-- Story detail -->
+<!-- ============ what a recipient sees first ============ -->
+<div class="gift" id="giftOverlay" role="dialog" aria-modal="true" aria-labelledby="giftHeading" hidden>
+  <div class="gift__inner">
+    <p class="eyebrow eyebrow--gold" id="giftEyebrow">A message for you</p>
+    <h2 class="gift__title" id="giftHeading"></h2>
+    <div class="cardwrap gift__card"><div class="card" id="giftCard"></div></div>
+    <p class="gift__about">This gift comes from <strong>Scholars Equity Network</strong>, a community of more than 20,000 Gates Millennium Scholars. Scholars everywhere are thanking the people who helped them along the way. You are one of those people.</p>
+    <div class="gift__actions">
+      <button class="btn btn--gold" id="giftGo">See what your belief helped make possible</button>
+      <button class="btn btn--ghost" id="giftBack" hidden>Back to my card</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ one letter, in full ============ -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mName" hidden>
   <div class="modal__scrim" data-close></div>
   <article class="modal__panel" tabindex="-1">
@@ -249,7 +288,7 @@
         <img class="modal__card" id="mImg" alt="">
         <div class="modal__actions">
           <button class="btn btn--gold" id="mShare">Share this letter</button>
-          <a class="btn btn--ghost" href="#gift" id="mThank">Thank someone who helped you</a>
+          <a class="btn btn--ghost" href="#thank" id="mThank">Thank someone who helped you</a>
           <p class="status status--light" id="mStatus" role="status" aria-live="polite"></p>
         </div>
       </div>
@@ -258,6 +297,10 @@
         <h3 id="mName"></h3>
         <p class="modal__role" id="mRole"></p>
         <div class="modal__letter" id="mLetter"></div>
+        <aside class="modal__people" id="mPeople" hidden>
+          <p class="modal__people-tag">The people in this story</p>
+          <p class="modal__people-quote" id="mPeopleQuote"></p>
+        </aside>
         <div class="modal__nav">
           <button class="link" id="mPrev">← Previous</button>
           <button class="link" id="mNext">Next →</button>
