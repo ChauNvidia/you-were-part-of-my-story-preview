@@ -162,7 +162,7 @@
   $('#letterCount').textContent = String(people.length);
   $('#larryFaces').innerHTML = ['joi', 'jen', 'irvin', 'lani', 'onyinye', 'christen', 'marcos'].filter((s) => bySlug[s]).map((s) => `<span class="face" style="${faceStyle(bySlug[s])}"></span>`).join('');
   const tile = (p) => `<button class="tile" data-slug="${esc(p.slug)}" aria-label="Read ${esc(shortName(p.name))}'s letter">
-      <img class="tile__img" src="${esc(p.image)}" alt="" loading="lazy" decoding="async"><span class="tile__name">${esc(shortName(p.name))}</span></button>`;
+      <img class="tile__img" src="${esc(p.image)}" alt="" loading="lazy" decoding="async"></button>`;
   const shelf = $('#letterShelf'); shelf.innerHTML = people.map(tile).join('');
   $('#shelfPrev').addEventListener('click', () => shelf.scrollBy({ left: -shelf.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }));
   $('#shelfNext').addEventListener('click', () => shelf.scrollBy({ left: shelf.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }));
