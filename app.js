@@ -334,7 +334,7 @@
       card.innerHTML = `${DECO[state.style]}<p class="card__top">You were part of my story</p><p class="card__to">${esc(salutation())}</p>
         <p class="card__msg">${esc(empty ? 'Your words will appear here.' : state.msg)}</p>
         ${state.from.trim() ? `<p class="card__from">With gratitude,<br>${esc(state.from.trim())}</p>` : ''}
-        <p class="card__foot">A gift from the Gates Millennium Scholars community</p>`;
+        <p class="card__foot">A gift from Scholars Equity Network</p>`;
       $('#msgCount').textContent = `${state.msg.length} / 420`;
     }
     const setWho = (id) => { state.who = id; $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); renderCard(); };
@@ -348,7 +348,7 @@
     $('#starter').addEventListener('click', () => { const w = whoObj() || WHO[6]; if (!msg.value.trim()) { msg.value = w.start + ' '; state.msg = msg.value; } else { $('#giftStatus').textContent = 'Here is an opening you could use: “' + w.start + '”'; } renderCard(); msg.focus(); msg.setSelectionRange(msg.value.length, msg.value.length); });
     $('#example').addEventListener('click', () => { if (!state.who) setWho('counselor'); msg.value = EXAMPLE; state.msg = EXAMPLE; $('#giftStatus').textContent = 'This is just an example. Change it to your own words.'; renderCard(); });
 
-    const plain = () => `${salutation()}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + '\n\n' : ''}You were part of my story. I wanted you to see what your belief in me helped make possible:\n${GIFT_URL}`;
+    const plain = () => `${salutation()}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + '\n\n' : ''}You were part of my story. I wanted you to see what your belief in me helped make possible:\n${GIFT_URL}\n\nA gift from Scholars Equity Network`;
     const ready = () => { if (!state.msg.trim()) { $('#giftStatus').textContent = 'Write a few words first, then copy or share.'; msg.focus(); return false; } return true; };
     $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the message from the card.'; });
     $('#shareBtn').addEventListener('click', async () => {
@@ -387,7 +387,7 @@
       for (; size >= 30; size -= 2) { ctx.font = `400 ${size}px Newsreader, Georgia, serif`; lines = wrap(ctx, state.msg.trim(), maxW); if (lines.length * size * 1.42 <= room) break; }
       lines.forEach((l) => { ctx.fillText(l, pad, y); y += size * 1.42; });
       if (state.from.trim()) { y += 30; ctx.font = 'italic 500 56px Newsreader, Georgia, serif'; ctx.fillText('With gratitude,', pad, y); y += 66; ctx.fillText(state.from.trim(), pad, y); }
-      ctx.globalAlpha = .8; ctx.font = '500 25px Inter, system-ui, sans-serif'; ctx.fillStyle = ink; ctx.fillText('A gift from the Gates Millennium Scholars community', pad, H - 86);
+      ctx.globalAlpha = .8; ctx.font = '500 25px Inter, system-ui, sans-serif'; ctx.fillStyle = ink; ctx.fillText('A gift from Scholars Equity Network', pad, H - 86);
       cv.toBlob((b) => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'thank-you-card.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); $('#giftStatus').textContent = 'Saved. Look for “thank-you-card.png” in your downloads.'; }, 'image/png');
     }
     $('#saveBtn').addEventListener('click', savePicture);
