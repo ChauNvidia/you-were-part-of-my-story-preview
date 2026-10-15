@@ -349,7 +349,12 @@ body.modal-open { overflow: hidden; }
 @keyframes expand { 0% { transform: scale(1); opacity: .75; } 100% { transform: scale(var(--k, 12)); opacity: 0; } }
 .t-larry circle.core { fill: var(--gold); }
 .t-larry circle.halo { fill: rgba(217,190,130,.22); }
-.t-larry text { font: italic 500 3px var(--serif); fill: #F4EEDD; text-anchor: middle; }
+.t-larry text { font: italic 500 3px var(--serif); fill: #F4EEDD; text-anchor: middle; transition: opacity 1s ease; }
+.t-larry .l-us, .t-larry .l-you { opacity: 0; }
+.s3 .t-larry .l-larry { opacity: 0; }
+.s3 .t-larry .l-us { opacity: 1; }
+.s4 .t-larry .l-us { opacity: 0; }
+.s4 .t-larry .l-you { opacity: 1; fill: #EBD6A0; font-size: 3.6px; }
 .t-rings1, .t-faces, .t-web { opacity: 0; transition: opacity 1.4s ease; }
 .s2 .t-rings1, .s2 .t-faces { opacity: 1; }
 .s3 .t-web { opacity: 1; }
@@ -430,3 +435,4 @@ body.modal-open { overflow: hidden; }
 /* The Ripples intro: one-line headline and a wider reading column */
 #storiesTitle { font-size: clamp(26px, 3.7vw, 40px); }
 #stories > .wrap > .lede { max-width: 800px; }
+.t-larry text { stroke: #0E1638; stroke-width: 1.1px; paint-order: stroke; stroke-linejoin: round; }

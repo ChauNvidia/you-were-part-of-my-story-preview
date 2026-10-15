@@ -263,7 +263,7 @@
     });
     svg.innerHTML = `<g class="t-rings0"><circle class="ring" cx="50" cy="50" r="1" style="--k:34;--d:0s"/><circle class="ring" cx="50" cy="50" r="1" style="--k:34;--d:2.3s"/><circle class="ring" cx="50" cy="50" r="1" style="--k:34;--d:4.6s"/></g>
       <g class="t-rings1">${rings1}</g><g class="t-web">${web}${helpers}</g>
-      <g class="t-larry"><circle class="halo" cx="50" cy="50" r="3.6"/><circle class="core" cx="50" cy="50" r="1.5"/><text x="50" y="57.4">Larry</text></g>`;
+      <g class="t-larry"><circle class="halo" cx="50" cy="50" r="3.6"/><circle class="core" cx="50" cy="50" r="1.5"/><text class="l-larry" x="50" y="57.4">Larry</text><text class="l-us" x="50" y="57.4">Each of us</text><text class="l-you" x="50" y="57.4">You</text></g>`;
     sq.insertAdjacentHTML('beforeend', pts.map((p) => `<span class="face stage-face" style="left:${p.x.toFixed(1)}%;top:${p.y.toFixed(1)}%;${faceStyle(bySlug[p.s])}"></span>`).join(''));
 
     const set = (n) => { sec.className = 'turn ' + ['s1', 's2', 's3', 's4'].slice(0, n).join(' '); $$('.beat', sec).forEach((b) => b.classList.toggle('is-active', Number(b.dataset.beat) === n)); };
