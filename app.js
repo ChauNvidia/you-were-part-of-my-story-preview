@@ -287,8 +287,6 @@
     $('#mImg').src = p.image; $('#mImg').alt = `The card for ${shortName(p.name)}: “${p.quote}”`;
     $('#mName').textContent = p.name; $('#mRole').textContent = cleanRole(p.role);
     $('#mLetter').innerHTML = paragraphs(dash(p.letter)).map((t) => `<p>${esc(t)}</p>`).join('');
-    const pq = PEOPLE_QUOTES.find((q) => q.slug === p.slug); const s = pq && peopleSentence(pq);
-    $('#mPeople').hidden = !s; if (s) $('#mPeopleQuote').textContent = '“' + s + '”';
     $('#mStatus').textContent = ''; panel.scrollTop = 0;
     history.replaceState(null, '', '#story=' + p.slug);
   }
