@@ -216,6 +216,14 @@ window.lettersBackData = [
     image: "letter-back-cards-gmsp/kelvin.png"
   },
   {
+    slug: "aaron",
+    name: "Aaron Stallworth",
+    role: "Director, GMS Alumni Programs, UNCF",
+    quote: "Mentorship. Opportunity. A genuine commitment.",
+    letter: "Larry, I had the privilege of serving as MC for the Pay It Forward Summit at the Obama Presidential Center — and being in that room, helping guide the day's conversations, was an honor I won't forget. What I found there is a community built on shared purpose, mentorship, and a genuine commitment to expanding opportunity for scholars. Now I'm paying it forward by helping guide this network forward, grateful for the invitation and already looking forward to the next one.",
+    image: "letter-back-cards-gmsp/aaron.png"
+  },
+  {
     slug: "whitney",
     name: "Whitney N. Blanco",
     role: "Gates Millennium Scholar",
@@ -310,13 +318,5 @@ window.lettersBackData = [
     quote: "The courage to begin again.",
     letter: "Larry, the Gates Millennium Scholarship let me earn a bachelor's in Biology and a master's in Educational Policy and Leadership without a dollar of student loan debt — freedom that shaped everything that came after. What I built with it is a career in student affairs, and later, after stepping away in 2017 to care for my mother until she passed in 2019, the courage to found Wellthy Reflections LLC, creating restorative spaces for people navigating grief, burnout, and life transitions. Now I'm paying it forward by bringing the same care, encouragement, and belief that shaped me into every space I create for someone else.",
     image: "letter-back-cards-gmsp/ramona.png"
-  },
-  {
-    slug: "aaron",
-    name: "Aaron Stallworth",
-    role: "Director, GMS Alumni Programs, UNCF",
-    quote: "Mentorship. Opportunity. A genuine commitment.",
-    letter: "Larry, I had the privilege of serving as MC for the Pay It Forward Summit at the Obama Presidential Center — and being in that room, helping guide the day's conversations, was an honor I won't forget. What I found there is a community built on shared purpose, mentorship, and a genuine commitment to expanding opportunity for scholars. Now I'm paying it forward by helping guide this network forward, grateful for the invitation and already looking forward to the next one.",
-    image: "letter-back-cards-gmsp/aaron.png"
   },
 ];
