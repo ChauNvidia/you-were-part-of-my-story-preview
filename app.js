@@ -31,7 +31,10 @@
   const sentences = (t) => t.split(/(?<=[.!?])\s+/);
 
   // Where each scholar says how they pay it forward (their own words).
+  const QUOTE_PICKS = { darrius: 'I serve as an Assistant United States Attorney' }; // chosen by Chau
   function payForward(p) {
+    const pick = QUOTE_PICKS[p.slug] && sentences(p.letter).find((s) => s.includes(QUOTE_PICKS[p.slug]));
+    if (pick) return dash(pick.replace(/^Today,\s*/i, '').trim());
     const hit = sentences(p.letter).filter((s) => /pay(ing)? it forward|giving back|give back|lifting|hold the door|opportunity for someone/i.test(s));
     return dash((hit.length ? hit[hit.length - 1] : p.quote).replace(/^Larry,\s*/i, '').trim());
   }
