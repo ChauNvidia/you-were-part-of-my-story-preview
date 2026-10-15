@@ -410,3 +410,5 @@ body.modal-open { overflow: hidden; }
 [hidden] { display: none !important; }
 .card { text-align: left; }
 .gift .card { text-align: left; }
+
+.display--room { font-size: clamp(32px, 4.6vw, 50px); line-height: 1.12; text-wrap: balance; }
