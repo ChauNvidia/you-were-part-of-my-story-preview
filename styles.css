@@ -424,3 +424,5 @@ body.modal-open { overflow: hidden; }
 
 /* Keep the Ripples Going: let the text use the section's width */
 #sen .lede { max-width: 800px; }
+
+.foot p.foot__partners { font-size: 15px; color: #B9B7AE; max-width: 760px; margin: 14px auto 12px; line-height: 1.5; }
