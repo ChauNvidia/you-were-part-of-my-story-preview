@@ -1,5 +1,6 @@
 /* You Were Part of My Story: interactions.
-   Everything runs in the browser. No backend, no tracking, nothing is stored.
+   Everything runs in the browser. Nothing a person writes is sent or stored.
+   The only thing we count is HOW MANY times a few actions happen (see tally() below): a bare number, never names or messages.
    Letters and cards: the approved set from letters-back-data.js (same as library.scholarsequity.org). */
 
 (function () {
@@ -14,6 +15,27 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const params = new URLSearchParams(location.search);
+
+  /* Counts only. Sends the NAME of an action (for example "copied") to a free counter service, nothing else:
+     no message, no names, no page address (referrer is switched off). Skipped on local files, on review links, and in any
+     browser where ?nocount=1 was opened once (use that for your own testing). */
+  const COUNTER = { ns: 'sen-ywpoms-7f3a', base: 'https://abacus.jasoncameron.dev/hit/' };
+  try { if (params.get('nocount') === '1') localStorage.setItem('ywpoms-nocount', '1'); } catch (_) { /* fine */ }
+  const countingOn = () => {
+    if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return false;
+    if (params.has('only') || params.has('still') || params.has('stage') || params.get('nocount') === '1') return false;
+    try { if (localStorage.getItem('ywpoms-nocount') === '1') return false; } catch (_) { /* fine */ }
+    return true;
+  };
+  const tallied = new Set();
+  const tally = (key, once) => {
+    try {
+      if (once && tallied.has(key)) return; tallied.add(key);
+      if (!countingOn()) return;
+      fetch(COUNTER.base + COUNTER.ns + '/' + key, { mode: 'no-cors', keepalive: true, referrerPolicy: 'no-referrer', credentials: 'omit' }).catch(() => {});
+    } catch (_) { /* counting must never break the page */ }
+  };
+  try { if (!sessionStorage.getItem('ywpoms-visit')) { sessionStorage.setItem('ywpoms-visit', '1'); tally('visits'); } } catch (_) { tally('visits', true); }
   if (params.get('only')) { // review aid: show a single section so it can be photographed
     const st = document.createElement('style');
     st.textContent = `main > section:not(#${params.get('only')}), .foot { display: none !important; } #${params.get('only')} { padding-top: 96px; }`;
@@ -373,7 +395,7 @@
     }
     const data = () => ({ w: state.who, t: state.to, m: state.msg, f: state.from, s: state.style });
     const render = () => { paint(card, { who: state.who, to: state.to, m: state.msg, f: state.from, style: state.style }, true); $('#msgCount').textContent = `${state.msg.length} / 420`; };
-    const setWho = (id) => { state.who = id; $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); render(); };
+    const setWho = (id) => { tally('started', true); state.who = id; $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); render(); };
     const setStyle = (id) => { state.style = id; $$('#styleChoices .style-opt').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); render(); };
     $('#whoChips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) setWho(c.dataset.id); });
     $('#styleChoices').addEventListener('click', (e) => { const c = e.target.closest('.style-opt'); if (c) setStyle(c.dataset.id); });
@@ -389,10 +411,11 @@
     const link = () => `${GIFT_URL}#for=${enc(data())}`;
     const plain = () => `${salutation(state)}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + '\n\n' : ''}You were part of my story. ${LEAD.replace('I wanted you', 'I wanted you')}\nOpen your card here: ${link()}\n\nA gift from Scholars Equity Network`;
     const ready = () => { if (!state.msg.trim()) { $('#giftStatus').textContent = 'Write a few words first, then copy or share.'; msg.focus(); return false; } return true; };
-    $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the message from the card.'; });
+    $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; tally('copied'); $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the message from the card.'; });
     $('#shareBtn').addEventListener('click', async () => {
       if (!ready()) return;
-      if (navigator.share) { try { await navigator.share({ title: 'You were part of my story', text: `${salutation(state)} ${state.msg.trim()}`, url: link() }); return; } catch (_) { return; } }
+      if (navigator.share) { try { await navigator.share({ title: 'You were part of my story', text: `${salutation(state)} ${state.msg.trim()}`, url: link() }); tally('shared'); return; } catch (_) { return; } }
+      tally('copied');
       $('#giftStatus').textContent = (await copyText(plain())) ? 'Sharing is not available in this browser, so we copied your message instead.' : 'Please copy the message from the card.';
     });
 
@@ -424,7 +447,7 @@
       ctx.fillStyle = ink;
       if (state.from.trim()) { y += 24; ctx.font = 'italic 500 56px Newsreader, Georgia, serif'; ctx.fillText('With gratitude,', pad, y); y += 66; ctx.fillText(state.from.trim(), pad, y); }
       ctx.globalAlpha = .8; ctx.font = '500 25px Inter, system-ui, sans-serif'; ctx.fillText('A gift from Scholars Equity Network', pad, H - 86);
-      cv.toBlob((b) => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'thank-you-card.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); $('#giftStatus').textContent = 'Saved. Look for “thank-you-card.png” in your downloads.'; }, 'image/png');
+      cv.toBlob((b) => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'thank-you-card.png'; document.body.appendChild(a); a.click(); a.remove(); tally('saved'); setTimeout(() => URL.revokeObjectURL(a.href), 4000); $('#giftStatus').textContent = 'Saved. Look for “thank-you-card.png” in your downloads.'; }, 'image/png');
     }
     $('#saveBtn').addEventListener('click', savePicture);
 
@@ -452,7 +475,7 @@
     render();
     if (params.get('example')) { setWho(params.get('who') || 'counselor'); msg.value = EXAMPLE; state.msg = EXAMPLE; $('#toName').value = state.to = 'Ms. Alvarez'; $('#fromName').value = state.from = 'Your former student'; setStyle(params.get('style') || 'ivory'); }
     const h = location.hash.match(/^#for=([\w-]+)/);
-    if (h) { const d = dec(h[1]); if (d && typeof d.m === 'string') openGift(d, false); }
+    if (h) { const d = dec(h[1]); if (d && typeof d.m === 'string') { openGift(d, false); tally('opened', true); } }
     window.__giftEncode = enc; // review aid
   })();
 

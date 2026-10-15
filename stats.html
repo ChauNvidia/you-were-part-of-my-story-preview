@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Thank-You Card Counts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#F6EFE2; --ink:#2B2B2B; --muted:#5A5F6B; --navy:#000744; --gold:#B48A3C; --card:#FFFDF8; --line:#E5DCC8; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --cream:#0E1430; --ink:#F4EEDD; --muted:#B9B7AE; --card:#161E44; --line:#2A3466; --navy:#F4EEDD; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font:400 18px/1.6 Inter, system-ui, sans-serif; padding:48px 16px; }
+  main { max-width:760px; margin:0 auto; }
+  h1 { font:500 clamp(30px,5vw,42px)/1.15 Newsreader, Georgia, serif; color:var(--navy); margin:0 0 8px; }
+  .sub { color:var(--muted); margin:0 0 32px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .tile { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .tile b { display:block; font:500 44px/1.1 Newsreader, Georgia, serif; color:var(--navy); }
+  .tile span { display:block; font-weight:600; margin-top:4px; }
+  .tile small { color:var(--muted); display:block; margin-top:2px; font-size:15px; line-height:1.4; }
+  .big { grid-column:1/-1; border-color:var(--gold); }
+  .note { margin-top:28px; color:var(--muted); font-size:16px; }
+  .when { margin-top:18px; color:var(--muted); font-size:15px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Thank-You Card Counts</h1>
+  <p class="sub">Only numbers. No names or messages are ever saved.</p>
+  <div class="grid" id="grid"></div>
+  <p class="note">“Cards sent” adds up people who copied or shared a card. Someone who does both is counted twice, and we can’t see whether a copied card was actually sent, so treat these as a good estimate, not an exact count.</p>
+  <p class="when" id="when"></p>
+</main>
+<script>
+(function () {
+  var NS = 'sen-ywpoms-7f3a', BASE = 'https://abacus.jasoncameron.dev/get/';
+  var ROWS = [
+    ['visits', 'Visits', 'People who opened the page (once per visit)'],
+    ['started', 'Cards started', 'Picked who to thank'],
+    ['copied', 'Cards copied', 'Copied the message and link'],
+    ['shared', 'Cards shared', 'Used the Share button'],
+    ['saved', 'Saved as a picture', 'Downloaded the card image'],
+    ['opened', 'Opened by the person thanked', 'Someone opened a card link they received']
+  ];
+  var grid = document.getElementById('grid');
+  function get(k) { return fetch(BASE + NS + '/' + k).then(function (r) { return r.ok ? r.json() : { value: 0 }; }).then(function (j) { return Number(j.value) || 0; }).catch(function () { return null; }); }
+  Promise.all(ROWS.map(function (r) { return get(r[0]); })).then(function (v) {
+    var out = {}; ROWS.forEach(function (r, i) { out[r[0]] = v[i]; });
+    var sent = (out.copied || 0) + (out.shared || 0);
+    var html = '<div class="tile big"><b>' + sent + '</b><span>Cards sent (estimate)</span><small>Copied plus shared</small></div>';
+    ROWS.forEach(function (r, i) { html += '<div class="tile"><b>' + (v[i] === null ? '—' : v[i]) + '</b><span>' + r[1] + '</span><small>' + r[2] + '</small></div>'; });
+    grid.innerHTML = html;
+    document.getElementById('when').textContent = 'Updated ' + new Date().toLocaleString();
+  });
+})();
+</script>
+</body>
+</html>
