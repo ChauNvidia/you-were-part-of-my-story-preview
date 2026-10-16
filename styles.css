@@ -445,3 +445,5 @@ body.modal-open { overflow: hidden; }
 .prog { margin: -6px 0 18px; padding: 14px 14px 4px; border-left: 3px solid var(--gold); background: rgba(180,138,60,.08); border-radius: 0 12px 12px 0; }
 .prog__q { font: 500 italic 18px var(--serif); margin: 0 0 10px; color: var(--navy); }
 @media (max-width: 560px) { .chips--rich { grid-template-columns: 1fr; } }
+
+.chip--rich { justify-content: center; min-height: 52px; }
