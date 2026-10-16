@@ -355,12 +355,16 @@
     const WHO = [
       { id: 'teacher', label: 'A teacher', to: 'To a teacher who believed in me', start: 'You saw something in me before I did. I think about you when…' },
       { id: 'counselor', label: 'A counselor', to: 'To a counselor who believed in me', start: 'You handed me an application and trusted I could finish it. Because of that…' },
-      { id: 'recommender', label: 'Someone who wrote my recommendation', to: 'To someone who vouched for me', start: 'You put your name behind mine when I had little to show. Here is what that made possible…' },
       { id: 'mentor', label: 'A mentor', to: 'To a mentor who believed in me', start: 'You treated my big idea like it mattered. Here is where it led…' },
       { id: 'family', label: 'A family member', to: 'To someone in my family who made room for me', start: 'I know what it cost you to make this possible. I wanted you to see…' },
       { id: 'friend', label: 'A friend', to: 'To a friend who stood by me', start: 'You were there when I wasn’t sure I would make it. I wanted you to know…' },
-      { id: 'door', label: 'Someone who opened a door', to: 'To someone who opened a door for me', start: 'You may never know it, but when you opened that door for me…' },
-      { id: 'other', label: 'Someone else', to: 'To someone who believed in me', start: 'I have been meaning to tell you…' },
+      { id: 'recommender', label: 'Someone who wrote me a recommendation', to: 'To someone who vouched for me', start: 'You put your name behind mine when I had little to show. Here is what that made possible…' },
+      { id: 'believed', label: 'Someone who believed in me', to: 'To someone who believed in me', start: 'You believed in me when I wasn’t sure I should. I wanted you to see…' },
+      { id: 'stood', label: 'Someone who stood by me', to: 'To someone who stood by me', start: 'You showed up when I needed someone. I want you to know what that meant…' },
+      { id: 'home', label: 'Someone who made me feel at home', to: 'To someone who made me feel at home', start: 'You made a place for me when I was far from home. I still think about…' },
+      { id: 'door', label: 'Someone who opened a door for me', to: 'To someone who opened a door for me', start: 'You may never know it, but when you opened that door for me…' },
+      { id: 'wins', label: 'Someone who celebrated my wins', to: 'To someone who celebrated my wins', start: 'You celebrated me before I knew how to celebrate myself. I wanted you to see…' },
+      { id: 'other', label: 'Someone else', to: 'To someone who was part of my story', start: 'I have been meaning to tell you…' },
     ];
     const EXAMPLE = 'You handed me an application and said, “You should try.” I did. Years later I am still carrying what you started. Thank you for seeing something in me before I could.';
     const STYLES = [{ id: 'ivory', label: 'Ivory' }, { id: 'midnight', label: 'Midnight' }, { id: 'ripple', label: 'Ripple' }];
@@ -371,7 +375,7 @@
     $('#styleChoices').innerHTML = STYLES.map((s) => `<button type="button" class="style-opt" role="radio" aria-checked="${s.id === state.style}" data-id="${s.id}"><i class="sw-${s.id}"></i>${s.label}</button>`).join('');
     const card = $('#cardPreview'); const msg = $('#message');
     const whoOf = (d) => WHO.find((w) => w.id === d.who);
-    const salutation = (d) => (d.to.trim() ? `Dear ${d.to.trim()},` : (whoOf(d) ? whoOf(d).to + ',' : 'To someone who believed in me,'));
+    const salutation = (d) => (d.to.trim() ? `Dear ${d.to.trim()},` : (whoOf(d) ? whoOf(d).to + ',' : 'To someone who was part of my story,'));
 
     const DECO = {
       ivory: '<svg class="card__deco" viewBox="0 0 100 125" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#B48A3C" stroke-width=".35" opacity=".75"><path d="M0 18 C 22 8, 30 28, 52 14 S 88 6, 100 16"/><path d="M0 22 C 22 12, 30 32, 52 18 S 88 10, 100 20" opacity=".5"/><path d="M0 107 C 20 117, 40 97, 62 111 S 90 119, 100 109"/><path d="M0 111 C 20 121, 40 101, 62 115 S 90 123, 100 113" opacity=".5"/></g></svg>',
