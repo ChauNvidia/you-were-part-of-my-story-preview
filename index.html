@@ -179,7 +179,11 @@
       <form class="builder__form" id="giftForm" autocomplete="off" novalidate>
         <fieldset>
           <legend><span class="step">1</span> Who made a difference in your journey?</legend>
-          <div class="chips" id="whoChips" role="radiogroup" aria-label="Who to thank"></div>
+          <div class="chips chips--rich" id="whoChips" role="radiogroup" aria-label="Who to thank"></div>
+          <div class="prog" id="progWrap" hidden>
+            <p class="prog__q">Which part of the program?</p>
+            <div class="chips chips--rich" id="progChips" role="radiogroup" aria-label="Which part of the program"></div>
+          </div>
           <label class="field">
             <span>Their name <em>(optional)</em></span>
             <input type="text" id="toName" maxlength="60" placeholder="For example, Ms. Alvarez">

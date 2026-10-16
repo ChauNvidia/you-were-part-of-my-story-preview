@@ -435,3 +435,13 @@ body.modal-open { overflow: hidden; }
 /* The Ripples intro: one-line headline and a wider reading column */
 #stories > .wrap > .lede { max-width: 800px; }
 .t-larry text { stroke: #0E1638; stroke-width: 1.1px; paint-order: stroke; stroke-linejoin: round; }
+
+/* Richer "who made a difference" buttons */
+.chips--rich { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.chip--rich { text-align: left; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; background: rgba(255,255,255,.45); }
+.chip--rich b { font: 600 15px/1.25 var(--sans); }
+.chip--rich small { font: 400 13px/1.35 var(--sans); color: #5A5F6B; }
+.chip--rich[aria-checked="true"] small { color: #D9D3C2; }
+.prog { margin: -6px 0 18px; padding: 14px 14px 4px; border-left: 3px solid var(--gold); background: rgba(180,138,60,.08); border-radius: 0 12px 12px 0; }
+.prog__q { font: 500 italic 18px var(--serif); margin: 0 0 10px; color: var(--navy); }
+@media (max-width: 560px) { .chips--rich { grid-template-columns: 1fr; } }

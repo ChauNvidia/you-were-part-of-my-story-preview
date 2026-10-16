@@ -353,28 +353,41 @@
   /* ---------------- thank someone: the card, the link, and what a recipient sees ---------------- */
   (function gift() {
     const WHO = [
-      { id: 'teacher', label: 'A teacher', to: 'To a teacher who believed in me', start: 'You saw something in me before I did. I think about you when…' },
-      { id: 'counselor', label: 'A counselor', to: 'To a counselor who believed in me', start: 'You handed me an application and trusted I could finish it. Because of that…' },
-      { id: 'mentor', label: 'A mentor', to: 'To a mentor who believed in me', start: 'You treated my big idea like it mattered. Here is where it led…' },
-      { id: 'family', label: 'A family member', to: 'To someone in my family who made room for me', start: 'I know what it cost you to make this possible. I wanted you to see…' },
-      { id: 'friend', label: 'A friend', to: 'To a friend who stood by me', start: 'You were there when I wasn’t sure I would make it. I wanted you to know…' },
-      { id: 'recommender', label: 'Someone who wrote me a recommendation', to: 'To someone who vouched for me', start: 'You put your name behind mine when I had little to show. Here is what that made possible…' },
-      { id: 'believed', label: 'Someone who believed in me', to: 'To someone who believed in me', start: 'You believed in me when I wasn’t sure I should. I wanted you to see…' },
-      { id: 'stood', label: 'Someone who stood by me', to: 'To someone who stood by me', start: 'You showed up when I needed someone. I want you to know what that meant…' },
-      { id: 'home', label: 'Someone who made me feel at home', to: 'To someone who made me feel at home', start: 'You made a place for me when I was far from home. I still think about…' },
-      { id: 'door', label: 'Someone who opened a door for me', to: 'To someone who opened a door for me', start: 'You may never know it, but when you opened that door for me…' },
-      { id: 'wins', label: 'Someone who celebrated my wins', to: 'To someone who celebrated my wins', start: 'You celebrated me before I knew how to celebrate myself. I wanted you to see…' },
-      { id: 'other', label: 'Someone else', to: 'To someone who was part of my story', start: 'I have been meaning to tell you…' },
+      { id: 'teacher', label: 'A teacher', sub: 'Who said you should try', to: 'To a teacher who believed in me', start: 'You saw something in me before I did. I think about you when…' },
+      { id: 'counselor', label: 'A counselor', sub: 'Who handed you the application', to: 'To a counselor who believed in me', start: 'You handed me an application and trusted I could finish it. Because of that…' },
+      { id: 'mentor', label: 'A mentor', sub: 'Who treated your big idea like it mattered', to: 'To a mentor who believed in me', start: 'You treated my big idea like it mattered. Here is where it led…' },
+      { id: 'family', label: 'A family member', sub: 'Who made room for you', to: 'To someone in my family who made room for me', start: 'I know what it cost you to make this possible. I wanted you to see…' },
+      { id: 'friend', label: 'A friend', sub: 'Who made the hard years lighter', to: 'To a friend who stood by me', start: 'You were there when I wasn’t sure I would make it. I wanted you to know…' },
+      { id: 'recommender', label: 'Someone who wrote me a recommendation', sub: 'Who put their name behind yours', to: 'To someone who vouched for me', start: 'You put your name behind mine when I had little to show. Here is what that made possible…' },
+      { id: 'program', label: 'Someone from the scholarship program', sub: 'Program staff, partner organizations, campus leaders', to: 'To someone from the scholarship program who helped me', start: 'You helped me sort out the checks, the paperwork, and the questions I didn’t know who to ask. I wanted you to see…' },
+      { id: 'believed', label: 'Someone who believed in me', sub: 'Who believed when you doubted yourself', to: 'To someone who believed in me', start: 'You believed in me when I wasn’t sure I should. I wanted you to see…' },
+      { id: 'stood', label: 'Someone who stood by me', sub: 'Who showed up when you needed them', to: 'To someone who stood by me', start: 'You showed up when I needed someone. I want you to know what that meant…' },
+      { id: 'home', label: 'Someone who made me feel at home', sub: 'Who made a place for you, far from home', to: 'To someone who made me feel at home', start: 'You made a place for me when I was far from home. I still think about…' },
+      { id: 'door', label: 'Someone who opened a door for me', sub: 'Who connected you to something new', to: 'To someone who opened a door for me', start: 'You may never know it, but when you opened that door for me…' },
+      { id: 'wins', label: 'Someone who celebrated my wins', sub: 'Who made your milestones feel special', to: 'To someone who celebrated my wins', start: 'You celebrated me before I knew how to celebrate myself. I wanted you to see…' },
+      { id: 'other', label: 'Someone else', sub: 'Anyone who was part of your story', to: 'To someone who was part of my story', start: 'I have been meaning to tell you…' },
+    ];
+    // Second row, shown when someone picks "Someone from the scholarship program".
+    const PS = 'You helped me sort out the checks, the paperwork, and the questions I didn’t know who to ask. I wanted you to see…';
+    const PROG = [
+      { id: 'prog-uncf', label: 'UNCF', sub: 'United Negro College Fund', to: 'To the team at UNCF who helped me', start: PS },
+      { id: 'prog-hsf', label: 'Hispanic Scholarship Fund', sub: 'Program staff', to: 'To the team at the Hispanic Scholarship Fund who helped me', start: PS },
+      { id: 'prog-apiasf', label: 'Asian & Pacific Islander American Scholarship Fund', sub: 'Program staff', to: 'To the team at the Asian & Pacific Islander American Scholarship Fund who helped me', start: PS },
+      { id: 'prog-nf', label: 'Native Forward Scholars Fund', sub: 'Program staff', to: 'To the team at Native Forward Scholars Fund who helped me', start: PS },
+      { id: 'prog-gmsp', label: 'Gates Millennium Scholars Program staff', sub: 'Who helped with the checks and paperwork', to: 'To the Gates Millennium Scholars Program staff who helped me', start: PS },
+      { id: 'campus', label: 'A campus-based leader', sub: 'Who helped with the checks and the admissions office', to: 'To the campus-based leader who helped me', start: 'You helped me with the checks and the admissions office when I didn’t know where to turn. I wanted you to see…' },
     ];
     const EXAMPLE = 'You handed me an application and said, “You should try.” I did. Years later I am still carrying what you started. Thank you for seeing something in me before I could.';
     const STYLES = [{ id: 'ivory', label: 'Ivory' }, { id: 'midnight', label: 'Midnight' }, { id: 'ripple', label: 'Ripple' }];
     const LEAD = 'I wanted you to see what your belief in me helped make possible.';
     const state = { who: '', to: '', msg: '', from: '', style: 'ivory' };
 
-    $('#whoChips').innerHTML = WHO.map((w) => `<button type="button" class="chip" role="radio" aria-checked="false" data-id="${w.id}">${esc(w.label)}</button>`).join('');
+    const rich = (w) => `<button type="button" class="chip chip--rich" role="radio" aria-checked="false" data-id="${w.id}"><b>${esc(w.label)}</b><small>${esc(w.sub)}</small></button>`;
+    $('#whoChips').innerHTML = WHO.map(rich).join('');
+    $('#progChips').innerHTML = PROG.map(rich).join('');
     $('#styleChoices').innerHTML = STYLES.map((s) => `<button type="button" class="style-opt" role="radio" aria-checked="${s.id === state.style}" data-id="${s.id}"><i class="sw-${s.id}"></i>${s.label}</button>`).join('');
     const card = $('#cardPreview'); const msg = $('#message');
-    const whoOf = (d) => WHO.find((w) => w.id === d.who);
+    const whoOf = (d) => WHO.find((w) => w.id === d.who) || PROG.find((w) => w.id === d.who);
     const salutation = (d) => (d.to.trim() ? `Dear ${d.to.trim()},` : (whoOf(d) ? whoOf(d).to + ',' : 'To someone who was part of my story,'));
 
     const DECO = {
@@ -399,9 +412,17 @@
     }
     const data = () => ({ w: state.who, t: state.to, m: state.msg, f: state.from, s: state.style });
     const render = () => { paint(card, { who: state.who, to: state.to, m: state.msg, f: state.from, style: state.style }, true); $('#msgCount').textContent = `${state.msg.length} / 420`; };
-    const setWho = (id) => { tally('started', true); state.who = id; $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); render(); };
+    const setWho = (id) => {
+      tally('started', true); state.who = id;
+      const inProg = id === 'program' || PROG.some((p) => p.id === id);
+      $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id || (inProg && c.dataset.id === 'program'))));
+      $$('#progChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id)));
+      const wrapEl = $('#progWrap'); const wasHidden = wrapEl.hidden; wrapEl.hidden = !inProg; render();
+      if (inProg && wasHidden && !params.has('still')) wrapEl.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+    };
     const setStyle = (id) => { state.style = id; $$('#styleChoices .style-opt').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id))); render(); };
     $('#whoChips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) setWho(c.dataset.id); });
+    $('#progChips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (c) setWho(c.dataset.id); });
     $('#styleChoices').addEventListener('click', (e) => { const c = e.target.closest('.style-opt'); if (c) setStyle(c.dataset.id); });
     $('#toName').addEventListener('input', (e) => { state.to = e.target.value; render(); });
     $('#fromName').addEventListener('input', (e) => { state.from = e.target.value; render(); });
