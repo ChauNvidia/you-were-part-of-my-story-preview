@@ -382,7 +382,7 @@
     const LEAD = 'I wanted you to see what your belief in me helped make possible.';
     const state = { who: '', to: '', msg: '', from: '', style: 'ivory' };
 
-    const rich = (w) => `<button type="button" class="chip chip--rich" role="radio" aria-checked="false" data-id="${w.id}"><b>${esc(w.label)}</b></button>`;
+    const rich = (w) => `<button type="button" class="chip" role="radio" aria-checked="false" data-id="${w.id}">${esc(w.label)}</button>`;
     $('#whoChips').innerHTML = WHO.map(rich).join('');
     $('#progChips').innerHTML = PROG.map(rich).join('');
     $('#styleChoices').innerHTML = STYLES.map((s) => `<button type="button" class="style-opt" role="radio" aria-checked="${s.id === state.style}" data-id="${s.id}"><i class="sw-${s.id}"></i>${s.label}</button>`).join('');
