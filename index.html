@@ -6,6 +6,8 @@
 <title>You Were Part of My Story · Scholars Equity Network</title>
 <meta name="description" content="A gift from Scholars Equity Network to the people who believed in us.">
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://abacus.jasoncameron.dev; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -232,7 +234,7 @@
         </div>
         <button class="link link--block" id="previewBtn">See what they'll see when they open it</button>
         <p class="status" id="giftStatus" role="status" aria-live="polite"></p>
-        <p class="tiny">Your card travels as a private link. When they open it, they see your message first, then a short welcome and the stories of other scholars. They don't need to know anything else. We only count how many cards are made. We never see or save what you write.</p>
+        <p class="tiny">Your card travels as a private link. When they open it, they see your message first, then a short welcome and the stories of other scholars. They don't need to know anything else. We only count how many cards are made. We never see or save what you write. Anyone who has your link can read your card, so please leave out private details like phone numbers or addresses.</p>
       </div>
     </div>
   </div>
@@ -296,6 +298,7 @@
     <h2 class="gift__title" id="giftHeading"></h2>
     <div class="cardwrap gift__card"><div class="card" id="giftCard"></div></div>
     <p class="gift__about">This gift comes from <strong>Scholars Equity Network</strong>, a community of more than 20,000 Gates Millennium Scholars. Scholars in our community are thanking the people who helped them along the way. You are one of those people. This is your story too.</p>
+    <p class="gift__about gift__about--small">This message was written by the person who sent it. Scholars Equity Network does not read or review these messages.</p>
     <div class="gift__actions">
       <button class="btn btn--gold" id="giftGo">See what your belief helped make possible</button>
       <button class="btn btn--ghost" id="giftBack" hidden>Back to my card</button>

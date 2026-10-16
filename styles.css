@@ -455,3 +455,5 @@ body.modal-open { overflow: hidden; }
 
 .contribute--dark { border-top-color: rgba(244,238,221,.18); color: #CFCBC0; margin-top: 56px; }
 .contribute--dark a { color: #8FA8FF; }
+
+.gift__about--small { font-size: 13.5px; opacity: .8; margin-top: -10px; }

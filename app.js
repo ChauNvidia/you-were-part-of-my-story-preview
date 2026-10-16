@@ -36,7 +36,8 @@
     } catch (_) { /* counting must never break the page */ }
   };
   try { if (!sessionStorage.getItem('ywpoms-visit')) { sessionStorage.setItem('ywpoms-visit', '1'); tally('visits'); } } catch (_) { tally('visits', true); }
-  if (params.get('only')) { // review aid: show a single section so it can be photographed
+  const safeWord = (v) => (/^[a-z]{1,20}$/.test(String(v || '')) ? v : '');
+  if (safeWord(params.get('only')) && document.getElementById(params.get('only'))) { // review aid: show a single section so it can be photographed
     const st = document.createElement('style');
     st.textContent = `main > section:not(#${params.get('only')}), .foot { display: none !important; } #${params.get('only')} { padding-top: 96px; }`;
     document.head.appendChild(st);
@@ -228,8 +229,8 @@
   });
   drawStars('');
   const showStoriesTab = makeTabs($('#stories .tabs'));
-  if (params.get('tab') && $('#tab-' + params.get('tab'))) showStoriesTab($('#tab-' + params.get('tab')));
-  if (params.get('theme')) drawStars(params.get('theme'));
+  if (safeWord(params.get('tab')) && $('#tab-' + params.get('tab'))) showStoriesTab($('#tab-' + params.get('tab')));
+  if (THEMES.some((t) => t.id === params.get('theme'))) drawStars(params.get('theme'));
 
   /* ---------------- the ripples: watch it travel ---------------- */
   (function ripple() {
@@ -485,10 +486,11 @@
     const overlay = $('#giftOverlay'); let preview = false;
     function openGift(d, isPreview) {
       preview = !!isPreview;
-      const who = d.f && d.f.trim();
+      const who = d.f && String(d.f).slice(0, 60).trim();
       $('#giftEyebrow').textContent = preview ? 'This is what they will see' : 'A message for you';
       $('#giftHeading').textContent = who ? `${who} wanted you to have this.` : 'Someone you helped wanted you to have this.';
-      paint($('#giftCard'), { who: d.w || d.who || '', to: d.t || d.to || '', m: d.m || '', f: d.f || '', c: d.c || '', style: ['ivory', 'midnight', 'ripple'].includes(d.s || d.style) ? (d.s || d.style) : 'ivory' }, false);
+      const cut = (v, n) => String(v == null ? '' : v).slice(0, n);
+      paint($('#giftCard'), { who: cut(d.w || d.who, 20), to: cut(d.t || d.to, 60), m: cut(d.m, 420), f: cut(d.f, 60), c: cut(d.c, 4), style: ['ivory', 'midnight', 'ripple'].includes(d.s || d.style) ? (d.s || d.style) : 'ivory' }, false);
       $('#giftBack').hidden = !preview; $('#giftGo').textContent = preview ? 'See the stories they’ll explore' : 'See what your belief helped make possible';
       overlay.hidden = false; document.body.classList.add('modal-open'); overlay.scrollTop = 0; $('#giftGo').focus({ preventScroll: true });
     }
