@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  const GIFT_URL = 'https://chaunvidia.github.io/you-were-part-of-my-story-preview/'; // prototype address
+  const GIFT_URL = 'https://story.scholarsequity.org/';
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const people = (window.lettersBackData || []).slice();
