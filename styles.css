@@ -433,6 +433,5 @@ body.modal-open { overflow: hidden; }
 .foot p.foot__partners { font-size: 15px; color: #B9B7AE; max-width: 760px; margin: 14px auto 12px; line-height: 1.5; }
 
 /* The Ripples intro: one-line headline and a wider reading column */
-#storiesTitle { font-size: clamp(26px, 3.7vw, 40px); }
 #stories > .wrap > .lede { max-width: 800px; }
 .t-larry text { stroke: #0E1638; stroke-width: 1.1px; paint-order: stroke; stroke-linejoin: round; }
