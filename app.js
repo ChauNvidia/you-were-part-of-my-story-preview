@@ -380,7 +380,9 @@
     const EXAMPLE = 'You handed me an application and said, “You should try.” I did. Years later I am still carrying what you started. Thank you for seeing something in me before I could.';
     const STYLES = [{ id: 'ivory', label: 'Ivory' }, { id: 'midnight', label: 'Midnight' }, { id: 'ripple', label: 'Ripple' }];
     const LEAD = 'I wanted you to see what your belief in me helped make possible.';
-    const state = { who: '', to: '', msg: '', from: '', style: 'ivory' };
+    const state = { who: '', to: '', msg: '', from: '', cls: '', style: 'ivory' };
+    const goodYear = (y) => /^(200\d|201[0-6])$/.test(String(y || '').trim());   // Gates Millennium Scholar classes: 2000 to 2016
+    const classLine = (y) => (goodYear(y) ? `Gates Millennium Scholar \u00B7 Class of ${String(y).trim()}` : '');
 
     const rich = (w) => `<button type="button" class="chip" role="radio" aria-checked="false" data-id="${w.id}">${esc(w.label)}</button>`;
     $('#whoChips').innerHTML = WHO.map(rich).join('');
@@ -408,10 +410,11 @@
         <p class="card__msg">${esc(empty && placeholder ? 'Your words will appear here.' : d.m)}</p>
         <p class="card__lead">${LEAD}</p>
         ${d.f.trim() ? `<p class="card__from">With gratitude,<br>${esc(d.f.trim())}</p>` : ''}
+        ${classLine(d.c) ? `<p class="card__class">${esc(classLine(d.c))}</p>` : ''}
         <p class="card__foot">A gift from Scholars Equity Network</p>`;
     }
-    const data = () => ({ w: state.who, t: state.to, m: state.msg, f: state.from, s: state.style });
-    const render = () => { paint(card, { who: state.who, to: state.to, m: state.msg, f: state.from, style: state.style }, true); $('#msgCount').textContent = `${state.msg.length} / 420`; };
+    const data = () => ({ w: state.who, t: state.to, m: state.msg, f: state.from, c: goodYear(state.cls) ? state.cls.trim() : '', s: state.style });
+    const render = () => { paint(card, { who: state.who, to: state.to, m: state.msg, f: state.from, c: state.cls, style: state.style }, true); $('#msgCount').textContent = `${state.msg.length} / 420`; };
     const setWho = (id) => {
       tally('started', true); state.who = id;
       const inProg = id === 'program' || PROG.some((p) => p.id === id);
@@ -426,6 +429,7 @@
     $('#styleChoices').addEventListener('click', (e) => { const c = e.target.closest('.style-opt'); if (c) setStyle(c.dataset.id); });
     $('#toName').addEventListener('input', (e) => { state.to = e.target.value; render(); });
     $('#fromName').addEventListener('input', (e) => { state.from = e.target.value; render(); });
+    $('#classYear').addEventListener('input', (e) => { const v = e.target.value.replace(/\D/g, '').slice(0, 4); e.target.value = v; state.cls = v; $('#yearNote').hidden = !(v.length === 4 && !goodYear(v)); render(); });
     msg.addEventListener('input', () => { state.msg = msg.value; render(); });
     $('#starter').addEventListener('click', () => { const w = whoOf(state) || WHO[WHO.length - 1]; if (!msg.value.trim()) { msg.value = w.start + ' '; state.msg = msg.value; } else { $('#giftStatus').textContent = 'Here is an opening you could use: “' + w.start + '”'; } render(); msg.focus(); msg.setSelectionRange(msg.value.length, msg.value.length); });
     $('#example').addEventListener('click', () => { if (!state.who) setWho('counselor'); msg.value = EXAMPLE; state.msg = EXAMPLE; $('#giftStatus').textContent = 'This is just an example. Change it to your own words.'; render(); });
@@ -434,7 +438,7 @@
     const enc = (o) => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     const dec = (s) => { try { let b = s.replace(/-/g, '+').replace(/_/g, '/'); while (b.length % 4) b += '='; return JSON.parse(decodeURIComponent(escape(atob(b)))); } catch (_) { return null; } };
     const link = () => `${GIFT_URL}#for=${enc(data())}`;
-    const plain = () => `${salutation(state)}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + '\n\n' : ''}You were part of my story. ${LEAD.replace('I wanted you', 'I wanted you')}\nOpen your card here: ${link()}\n\nA gift from Scholars Equity Network`;
+    const plain = () => `${salutation(state)}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + (classLine(state.cls) ? '\n' + classLine(state.cls) : '') + '\n\n' : (classLine(state.cls) ? classLine(state.cls) + '\n\n' : '')}You were part of my story. ${LEAD.replace('I wanted you', 'I wanted you')}\nOpen your card here: ${link()}\n\nA gift from Scholars Equity Network`;
     const ready = () => { if (!state.msg.trim()) { $('#giftStatus').textContent = 'Write a few words first, then copy or share.'; msg.focus(); return false; } return true; };
     $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; tally('copied'); $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the message from the card.'; });
     $('#shareBtn').addEventListener('click', async () => {
@@ -465,12 +469,13 @@
       const pad = 97; const maxW = W - pad * 2; let y = pad + 20;
       ctx.fillStyle = accent; ctx.font = '600 27px Inter, system-ui, sans-serif'; if ('letterSpacing' in ctx) ctx.letterSpacing = '5px'; ctx.fillText('YOU WERE PART OF MY STORY', pad, y); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
       y += 90; ctx.fillStyle = ink; ctx.font = 'italic 500 62px Newsreader, Georgia, serif'; wrap(ctx, salutation(state), maxW).forEach((l) => { ctx.fillText(l, pad, y); y += 72; });
-      y += 20; const reserve = 260 + 70 + (state.from.trim() ? 150 : 0); const room = H - reserve - y; let size = 52; let lines;
+      y += 20; const reserve = 260 + 70 + (state.from.trim() ? 150 : 0) + (classLine(state.cls) ? 60 : 0); const room = H - reserve - y; let size = 52; let lines;
       for (; size >= 30; size -= 2) { ctx.font = `400 ${size}px Newsreader, Georgia, serif`; lines = wrap(ctx, state.msg.trim(), maxW); if (lines.length * size * 1.42 <= room) break; }
       lines.forEach((l) => { ctx.fillText(l, pad, y); y += size * 1.42; });
       y += 26; ctx.font = 'italic 400 40px Newsreader, Georgia, serif'; ctx.fillStyle = accent; wrap(ctx, LEAD, maxW).forEach((l) => { ctx.fillText(l, pad, y); y += 52; });
       ctx.fillStyle = ink;
       if (state.from.trim()) { y += 24; ctx.font = 'italic 500 56px Newsreader, Georgia, serif'; ctx.fillText('With gratitude,', pad, y); y += 66; ctx.fillText(state.from.trim(), pad, y); }
+      if (classLine(state.cls)) { y += 52; ctx.fillStyle = accent; ctx.font = '600 29px Inter, system-ui, sans-serif'; if ('letterSpacing' in ctx) ctx.letterSpacing = '2px'; ctx.fillText(classLine(state.cls).toUpperCase(), pad, y); if ('letterSpacing' in ctx) ctx.letterSpacing = '0px'; ctx.fillStyle = ink; }
       ctx.globalAlpha = .8; ctx.font = '500 25px Inter, system-ui, sans-serif'; ctx.fillText('A gift from Scholars Equity Network', pad, H - 86);
       cv.toBlob((b) => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'thank-you-card.png'; document.body.appendChild(a); a.click(); a.remove(); tally('saved'); setTimeout(() => URL.revokeObjectURL(a.href), 4000); $('#giftStatus').textContent = 'Saved. Look for “thank-you-card.png” in your downloads.'; }, 'image/png');
     }
@@ -483,7 +488,7 @@
       const who = d.f && d.f.trim();
       $('#giftEyebrow').textContent = preview ? 'This is what they will see' : 'A message for you';
       $('#giftHeading').textContent = who ? `${who} wanted you to have this.` : 'Someone you helped wanted you to have this.';
-      paint($('#giftCard'), { who: d.w || d.who || '', to: d.t || d.to || '', m: d.m || '', f: d.f || '', style: ['ivory', 'midnight', 'ripple'].includes(d.s || d.style) ? (d.s || d.style) : 'ivory' }, false);
+      paint($('#giftCard'), { who: d.w || d.who || '', to: d.t || d.to || '', m: d.m || '', f: d.f || '', c: d.c || '', style: ['ivory', 'midnight', 'ripple'].includes(d.s || d.style) ? (d.s || d.style) : 'ivory' }, false);
       $('#giftBack').hidden = !preview; $('#giftGo').textContent = preview ? 'See the stories they’ll explore' : 'See what your belief helped make possible';
       overlay.hidden = false; document.body.classList.add('modal-open'); overlay.scrollTop = 0; $('#giftGo').focus({ preventScroll: true });
     }
@@ -498,7 +503,7 @@
     document.addEventListener('keydown', (e) => { if (!overlay.hidden && e.key === 'Escape' && preview) closeGift(false); });
 
     render();
-    if (params.get('example')) { setWho(params.get('who') || 'counselor'); msg.value = EXAMPLE; state.msg = EXAMPLE; $('#toName').value = state.to = 'Ms. Alvarez'; $('#fromName').value = state.from = 'Your former student'; setStyle(params.get('style') || 'ivory'); }
+    if (params.get('example')) { setWho(params.get('who') || 'counselor'); msg.value = EXAMPLE; state.msg = EXAMPLE; $('#toName').value = state.to = 'Ms. Alvarez'; $('#fromName').value = state.from = 'Your former student'; $('#classYear').value = state.cls = '2010'; setStyle(params.get('style') || 'ivory'); }
     const h = location.hash.match(/^#for=([\w-]+)/);
     if (h) { const d = dec(h[1]); if (d && typeof d.m === 'string') { openGift(d, false); tally('opened', true); } }
     window.__giftEncode = enc; // review aid

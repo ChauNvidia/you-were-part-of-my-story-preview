@@ -203,10 +203,17 @@
               <button type="button" class="link" id="example">See an example</button>
             </span>
           </div>
-          <label class="field">
-            <span>Your name</span>
-            <input type="text" id="fromName" maxlength="60" placeholder="How they know you">
-          </label>
+          <div class="field-row">
+            <label class="field">
+              <span>Your name</span>
+              <input type="text" id="fromName" maxlength="60" placeholder="How they know you">
+            </label>
+            <label class="field field--year">
+              <span>Class of <em>(optional)</em></span>
+              <input type="text" id="classYear" inputmode="numeric" maxlength="4" placeholder="2010" autocomplete="off">
+            </label>
+          </div>
+          <p class="tiny" id="yearNote" hidden>Gates Millennium Scholar classes ran from 2000 to 2016.</p>
         </fieldset>
 
         <fieldset>

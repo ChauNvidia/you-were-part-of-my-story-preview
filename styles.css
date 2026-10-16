@@ -440,3 +440,11 @@ body.modal-open { overflow: hidden; }
 .prog { margin: -6px 0 18px; padding: 14px 14px 4px; border-left: 3px solid var(--gold); background: rgba(180,138,60,.08); border-radius: 0 12px 12px 0; }
 .prog__q { font: 500 italic 18px var(--serif); margin: 0 0 10px; color: var(--navy); }
 
+
+/* Class-year line */
+.field-row { display: grid; grid-template-columns: 1fr 150px; gap: 14px; align-items: end; }
+.field-row .field { margin: 0 0 18px; }
+@media (max-width: 420px) { .field-row { grid-template-columns: 1fr 120px; gap: 10px; } }
+.card__class { position: relative; font: 600 2.7cqw/1.3 var(--sans); letter-spacing: .08em; text-transform: uppercase; margin: 1.4cqw 0 0; }
+.card--ivory .card__class, .card--ripple .card__class { color: #8E6A26; }
+.card--midnight .card__class { color: var(--gold-soft); }
