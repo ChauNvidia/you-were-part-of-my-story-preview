@@ -465,3 +465,8 @@ body.modal-open { overflow: hidden; }
 .nav__brand { display: inline-flex; align-items: center; gap: 14px; }
 .nav__logo { height: 29px; width: auto; display: block; }
 @media (max-width: 820px) { .nav__logo { height: 22px; } .nav__brand { gap: 8px; font-size: 14px; min-width: 0; } .nav__brand span { white-space: nowrap; } .nav__toggle { flex-shrink: 0; } }
+
+/* ripples: Changemakers line */
+.changemakers { max-width: 800px; margin: 56px auto 0; font-size: 1.1rem; line-height: 1.6; color: #F4EEDD; text-align: center; }
+.changemakers a { color: #E8C777; text-underline-offset: 3px; }
+.changemakers a:hover { color: #fff; }
