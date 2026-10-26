@@ -238,7 +238,7 @@
     const r = rng(21); const dots = [];
     for (let i = 0; i < 170; i++) { const a = r() * Math.PI * 2; const rad = 0.405 + r() * 0.09; dots.push({ x: 0.5 + rad * Math.cos(a), y: 0.5 + rad * Math.sin(a), g: 0 }); }
     for (let i = 0; i < 60; i++) { const a = r() * Math.PI * 2; const rad = 0.06 + r() * 0.3; dots.push({ x: 0.5 + rad * Math.cos(a), y: 0.5 + rad * Math.sin(a), g: 0 }); }
-    const rip = new Ripples(canvas, { dots, baseAlpha: 0.16, speed: 190 });
+    const rip = new Ripples(canvas, { dots, baseAlpha: 0.4, speed: 190 });
     const inner = people.filter((_, i) => i % 2 === 0); const outer = people.filter((_, i) => i % 2 === 1);
     const place = (list, R, off) => list.map((p, i) => { const a = (i / list.length) * Math.PI * 2 - Math.PI / 2 + off; return { p, x: 50 + R * Math.cos(a), y: 50 + R * Math.sin(a) }; });
     const nodes = place(inner, 22, 0).concat(place(outer, 35, Math.PI / outer.length));

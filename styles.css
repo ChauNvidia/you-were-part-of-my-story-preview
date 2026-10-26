@@ -497,3 +497,4 @@ body.modal-open { overflow: hidden; }
   .builder fieldset:nth-of-type(3) { order: 4; }
 }
 .center .closing-line { margin: 44px 0 22px; }
+.welcome a { color: var(--gold-soft); text-decoration: underline; white-space: nowrap; }
