@@ -172,7 +172,7 @@
 
   /* ---------------- tabs ---------------- */
   function makeTabs(root, onShow) {
-    const tabs = $$('[role="tab"]', root);
+    const tabs = $$('[role="tab"]', root).filter((t) => !t.hidden);
     const show = (tab, focus) => {
       tabs.forEach((t) => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; const panel = document.getElementById(t.getAttribute('aria-controls')); if (panel) panel.hidden = !on; });
       if (focus) tab.focus(); if (onShow) onShow(tab.id);
@@ -386,7 +386,13 @@
     const classLine = (y) => (goodYear(y) ? `Gates Millennium Scholar \u00B7 Class of ${String(y).trim()}` : '');
 
     const rich = (w) => `<button type="button" class="chip" role="radio" aria-checked="false" data-id="${w.id}">${esc(w.label)}</button>`;
-    $('#whoChips').innerHTML = WHO.map(rich).join('');
+    const MORE = ['recommender', 'stood', 'home', 'door', 'wins'];   // tucked behind "More ways to say it"
+    const richMore = (w) => rich(w).replace('<button ', '<button hidden data-more="1" ');
+    const ordered = WHO.filter((w) => w.id !== 'other');
+    $('#whoChips').innerHTML = ordered.map((w) => (MORE.includes(w.id) ? richMore(w) : rich(w))).join('') + rich(WHO.find((w) => w.id === 'other'));
+    $('#whoChips').insertAdjacentHTML('afterend', '<button type="button" class="link chips-more" id="whoMore" aria-expanded="false">More ways to say it</button>');
+    const showMore = (on) => { $$('#whoChips [data-more]').forEach((c) => { c.hidden = !on; }); $('#whoMore').setAttribute('aria-expanded', String(on)); $('#whoMore').textContent = on ? 'Show fewer' : 'More ways to say it'; };
+    $('#whoMore').addEventListener('click', () => showMore($('#whoMore').getAttribute('aria-expanded') !== 'true'));
     $('#progChips').innerHTML = PROG.map(rich).join('');
     $('#styleChoices').innerHTML = STYLES.map((s) => `<button type="button" class="style-opt" role="radio" aria-checked="${s.id === state.style}" data-id="${s.id}"><i class="sw-${s.id}"></i>${s.label}</button>`).join('');
     const card = $('#cardPreview'); const msg = $('#message');
@@ -417,7 +423,7 @@
     const data = () => ({ w: state.who, t: state.to, m: state.msg, f: state.from, c: goodYear(state.cls) ? state.cls.trim() : '', s: state.style });
     const render = () => { paint(card, { who: state.who, to: state.to, m: state.msg, f: state.from, c: state.cls, style: state.style }, true); $('#msgCount').textContent = `${state.msg.length} / 420`; };
     const setWho = (id) => {
-      tally('started', true); state.who = id;
+      tally('started', true); state.who = id; if (MORE.includes(id)) showMore(true);
       const inProg = id === 'program' || PROG.some((p) => p.id === id);
       $$('#whoChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id || (inProg && c.dataset.id === 'program'))));
       $$('#progChips .chip').forEach((c) => c.setAttribute('aria-checked', String(c.dataset.id === id)));
@@ -512,7 +518,6 @@
   })();
 
   /* ---------------- what this could become ---------------- */
-  makeTabs($('#living .tabs'));
   (function weave() {
     const svg = $('#weave'); if (!svg) return; let s = '';
     for (let x = 14; x <= 206; x += 12) s += `<line x1="${x}" y1="8" x2="${x}" y2="112" stroke="#F4EEDD" stroke-opacity=".28" stroke-width="1"/>`;

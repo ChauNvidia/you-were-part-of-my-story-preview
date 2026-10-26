@@ -94,7 +94,7 @@
     <div class="tabs tabs--dark" role="tablist" aria-label="Ways to explore the stories">
       <button role="tab" id="tab-ripple" aria-controls="panel-ripple" aria-selected="true">Watch it ripple</button>
       <button role="tab" id="tab-theme" aria-controls="panel-theme" aria-selected="false" tabindex="-1">By how they invest in others</button>
-      <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false" tabindex="-1">The constellation</button>
+      <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false" tabindex="-1" hidden>The constellation</button>
     </div>
 
     <div id="panel-ripple" role="tabpanel" aria-labelledby="tab-ripple">
@@ -232,7 +232,7 @@
         </div>
         <button class="link link--block" id="previewBtn">See what they'll see when they open it</button>
         <p class="status" id="giftStatus" role="status" aria-live="polite"></p>
-        <p class="tiny">Your card travels as a private link. When they open it, they see your message first, then a short welcome and the stories of other scholars. They don't need to know anything else. We only count how many cards are made. We never see or save what you write. Anyone who has your link can read your card, so please leave out private details like phone numbers or addresses.</p>
+        <p class="tiny privacy"><span>Your card travels as a private link.</span> <span>We only count how many cards are made. We never see or save what you write.</span> <span>Anyone with the link can read it, so please leave out private details like phone numbers or addresses.</span></p>
       </div>
     </div>
   </div>
@@ -245,39 +245,14 @@
       <p class="eyebrow eyebrow--gold">Keep the ripples going</p>
       <h2 id="senTitle" class="display display--sm light">Now it's our turn<br>to open the doors.</h2>
       <p class="lede light lede--tight"><strong>The next generation is waiting for someone to believe in them.</strong></p>
-      <p class="lede light lede--tight">None of us arrived here alone. The opportunities that changed our lives existed because someone chose to invest in people they might never meet, whose futures they couldn't yet imagine.</p>
-      <p class="lede light lede--tight">Today, we are those people.</p>
+      <p class="lede light lede--tight">The opportunities that changed our lives existed because someone chose to invest in people they might never meet, whose futures they couldn't yet imagine. Today, we are those people.</p>
       <p class="lede light lede--tight">Somewhere, there's a student with the same potential we had, waiting for someone to see it. A young person who needs encouragement, a recommendation, a connection, or an opportunity they don't yet know exists.</p>
-      <p class="lede light lede--tight">The doors that opened for us won't automatically remain open for them.</p>
-      <p class="lede light">We have to keep opening them.</p>
+      <p class="lede light">The doors that opened for us won't automatically remain open for them. We have to keep opening them.</p>
       <p class="lede light"><strong>That's why we're building Scholars Equity Network</strong>, a community of more than 20,000 Gates Millennium Scholars alumni from all four partner communities. The scholarship invested in each of us as individuals. We exist so scholars can invest in one another, through mentorship, leadership, and the doors we open for each other. Through the <a href="https://www.scholarsequity.org/pay-it-forward-accelerator" target="_blank" rel="noopener noreferrer">Pay It Forward Accelerator</a> and the <a href="https://mosaic.scholarsequity.org/" target="_blank" rel="noopener noreferrer">Pay It Forward Summit</a> we turn those acts into lasting community impact.</p>
       <p class="lede light"><strong>What can you pay forward?</strong> Your time, your talent, your treasure. Start by thanking someone who helped you.</p>
-      <a class="btn btn--gold" href="https://www.scholarsequity.org" target="_blank" rel="noopener noreferrer">Meet the Scholars Equity Network Community</a>
       <p class="closing-line">The story doesn't end with us.</p>
+      <a class="btn btn--gold" href="https://www.scholarsequity.org" target="_blank" rel="noopener noreferrer">Meet the Scholars Equity Network Community</a>
       <p class="contribute contribute--dark">Are you a scholar with your own letter? We'd be happy to include your story. <a href="mailto:admin@scholarsequity.org?subject=My%20story%20%E2%80%94%20I%27d%20like%20to%20be%20included&body=Hi%20SEN%20team%2C%0A%0AI%27d%20love%20to%20be%20included%20in%20You%20Were%20Part%20of%20My%20Story%21%20Here%27s%20what%20I%27m%20sending%3A%0A%0A1%29%20My%20name%20and%20class%20year%3A%0A%0A%0A2%29%20A%20headshot%20photo%3A%0A%28attached%29%0A%0A3%29%20My%20story%20%E2%80%94%20what%20the%20Gates%20Millennium%20Scholarship%20made%20possible%20for%20me%2C%20who%20was%20part%20of%20my%20story%2C%20and%20how%20I%27m%20paying%20it%20forward%3A%0A%0A%0A%0AThank%20you%21">Email us</a> to be considered for additions to this page.</p>
-    </div>
-
-    <div class="next-up" id="living">
-      <p class="eyebrow eyebrow--gold">What this could become</p>
-      <h3 class="next-up__title">A permanent home for gratitude.</h3>
-      <p class="next-up__sub">A concept preview. Thank-you cards are never saved. We only count how many are made.</p>
-      <div class="tabs tabs--small tabs--dark" role="tablist" aria-label="Ideas for what comes next">
-        <button role="tab" id="lt-1" aria-controls="lp-1" aria-selected="true">For scholars</button>
-        <button role="tab" id="lt-2" aria-controls="lp-2" aria-selected="false" tabindex="-1">For the people who helped</button>
-        <button role="tab" id="lt-3" aria-controls="lp-3" aria-selected="false" tabindex="-1">For the community</button>
-      </div>
-      <div role="tabpanel" id="lp-1" aria-labelledby="lt-1" class="live">
-        <div class="live__text"><h3>Add a thread of your own.</h3><p>Scholars could tell the story of someone who helped them, in their own words, and see it join the collection beside the letters.</p></div>
-        <figure class="mock"><figcaption class="mock__tag">Example, not a real story</figcaption><p class="mock__quote">"My counselor never knew I got in. I'd like her to know."</p><p class="mock__by">A scholar, writing about a counselor</p><svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg></figure>
-      </div>
-      <div role="tabpanel" id="lp-2" aria-labelledby="lt-2" class="live" hidden>
-        <div class="live__text"><h3>See where it went.</h3><p>A teacher or counselor who receives a thank-you could follow the thread forward and see the life it touched, and the lives that life has touched since.</p></div>
-        <figure class="mock"><figcaption class="mock__tag">Example, not a real story</figcaption><p class="mock__quote">"You were part of my story. Here is what your belief in me made possible."</p><p class="mock__by">The note they might open</p><svg class="mock__thread" viewBox="0 0 200 20" aria-hidden="true"><path d="M0 10 C 40 0, 60 20, 100 10 S 160 0, 200 10" /></svg></figure>
-      </div>
-      <div role="tabpanel" id="lp-3" aria-labelledby="lt-3" class="live" hidden>
-        <div class="live__text"><h3>A tapestry that keeps growing.</h3><p>Over time, the letters, the thank-yous, and the people behind them could weave into one living picture of how opportunity travels from person to person.</p></div>
-        <figure class="mock mock--weave" aria-label="Concept: threads weaving together"><figcaption class="mock__tag">Concept illustration</figcaption><svg viewBox="0 0 220 120" aria-hidden="true" id="weave"></svg></figure>
-      </div>
     </div>
   </div>
 </section>
