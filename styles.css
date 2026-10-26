@@ -555,3 +555,4 @@ body.modal-open { overflow: hidden; }
 .signoff img { display: block; height: 78px; width: auto; margin: 0 auto; }
 .signoff p { margin: 16px 0 0; font: italic 400 20px/1.4 var(--serif); color: #E9E3D2; }
 @media (max-width: 640px) { .signoff img { height: 64px; } .signoff p { font-size: 18px; } }
+.brandname { font-size: 1.32em; line-height: 1.2; color: #F4EEDD; }
