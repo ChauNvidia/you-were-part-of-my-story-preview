@@ -549,3 +549,9 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 900px) {
   .turn .beat.beat--spacer { min-height: 20svh; margin: 0; }
 }
+
+/* brand sign-off at the end */
+.signoff { margin: 56px auto 0; padding-top: 38px; border-top: 1px solid rgba(244,238,221,.18); text-align: center; }
+.signoff img { display: block; height: 78px; width: auto; margin: 0 auto; }
+.signoff p { margin: 16px 0 0; font: italic 400 20px/1.4 var(--serif); color: #E9E3D2; }
+@media (max-width: 640px) { .signoff img { height: 64px; } .signoff p { font-size: 18px; } }
