@@ -557,3 +557,5 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 640px) { .signoff img { height: 64px; } .signoff p { font-size: 18px; } }
 .brandname { font-size: 1.32em; line-height: 1.2; color: #F4EEDD; }
 .brandname { font-weight: 700; }
+.btn--gold:has(.btn__mark) { display: inline-flex; align-items: center; gap: 12px; padding-left: 16px; }
+.btn__mark { display: block; width: 26px; height: 26px; border-radius: 4px; flex: none; }
