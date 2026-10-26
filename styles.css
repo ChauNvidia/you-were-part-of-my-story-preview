@@ -473,7 +473,7 @@ body.modal-open { overflow: hidden; }
 
 /* turn section: shorter scroll (was four full screens, now about two and a half) */
 .beat { min-height: 45svh; }
-.beat[data-beat="1"] { min-height: 60svh; }
+.beat[data-beat="1"] { min-height: 38svh; }
 .beat[data-beat="3"] { min-height: 75svh; }
 .beat[data-beat="4"] { min-height: 65svh; }
 @media (max-width: 820px) {
