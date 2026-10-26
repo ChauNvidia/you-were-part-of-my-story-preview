@@ -144,7 +144,7 @@
       const { ctx } = this; ctx.clearRect(0, 0, this.w, this.h);
       this.rings.forEach((g) => {
         const k = Math.max(0, 1 - g.r / g.max);
-        ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2); ctx.strokeStyle = `rgba(217,190,130,${0.55 * k * k})`; ctx.lineWidth = 1.4; ctx.stroke();
+        ctx.beginPath(); ctx.arc(g.x, g.y, Math.max(0, g.r), 0, Math.PI * 2); ctx.strokeStyle = `rgba(217,190,130,${0.55 * k * k})`; ctx.lineWidth = 1.4; ctx.stroke();
         if (g.r > 40) { ctx.beginPath(); ctx.arc(g.x, g.y, g.r - 26, 0, Math.PI * 2); ctx.strokeStyle = `rgba(217,190,130,${0.25 * k * k})`; ctx.lineWidth = 1; ctx.stroke(); }
       });
       this.dots.forEach((d) => {
@@ -189,10 +189,6 @@
   $('#larryFaces').innerHTML = ['joi', 'jen', 'irvin', 'lani', 'onyinye', 'christen', 'marcos'].filter((s) => bySlug[s]).map((s) => `<span class="face" style="${faceStyle(bySlug[s])}"></span>`).join('');
   const tile = (p) => `<button class="tile" data-slug="${esc(p.slug)}" aria-label="Read ${esc(shortName(p.name))}'s letter">
       <img class="tile__img" src="${esc(p.image)}" alt="" loading="lazy" decoding="async"></button>`;
-  const shelf = $('#letterShelf'); shelf.innerHTML = people.map(tile).join('');
-  $('#shelfPrev').addEventListener('click', () => shelf.scrollBy({ left: -shelf.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }));
-  $('#shelfNext').addEventListener('click', () => shelf.scrollBy({ left: shelf.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }));
-  $('#shelfToggle').addEventListener('click', (e) => { const on = shelf.classList.toggle('shelf--grid'); e.currentTarget.setAttribute('aria-expanded', String(on)); e.currentTarget.textContent = on ? 'Fold them back into a row' : 'See all of them at once'; $('.shelf-ctrl').style.visibility = on ? 'hidden' : 'visible'; });
   $('#themeGroups').innerHTML = THEMES.map((t) => {
     const group = people.filter((p) => tagsOf(p).includes(t.id));
     return `<section class="theme" aria-label="${esc(t.title)}"><h3>${esc(t.title)}</h3><p>${esc(t.desc)}</p><div class="grid">${group.map(tile).join('')}</div></section>`;
@@ -249,9 +245,13 @@
       idx = i; const n = nodes[i]; faces.forEach((f, k) => f.classList.toggle('is-on', k === i));
       $('.ripple-caption__who', cap).textContent = shortName(n.p.name);
       $('.ripple-caption__line', cap).textContent = '“' + payForward(n.p) + '”';
+      const hq = PEOPLE_QUOTES.find((q) => q.slug === n.p.slug); const hs = hq && peopleSentence(hq);
+      const help = $('#rippleHelp'); help.hidden = !hs; help.textContent = hs ? 'Also from their letter: “' + hs + '”' : '';
+      const rd = $('#rippleRead'); rd.hidden = false; rd.dataset.slug = n.p.slug;
       if (wave) rip.spawn(...centerOf(n), rip.w * 0.62);
     }
-    faces.forEach((f, i) => f.addEventListener('click', () => { seq.forEach(clearTimeout); seq = []; pick(i, true); }));
+    faces.forEach((f, i) => f.addEventListener('click', () => { seq.forEach(clearTimeout); seq = []; pick(i, true); openStory(nodes[i].p.slug, f); }));
+    $('#rippleRead').addEventListener('click', (e) => openStory(e.currentTarget.dataset.slug, e.currentTarget));
     $('#rippleNext').addEventListener('click', () => pick((idx + 1) % nodes.length, true));
     $('#rippleWatch').addEventListener('click', () => {
       seq.forEach(clearTimeout); seq = [];
@@ -261,15 +261,6 @@
     });
     if (params.get('ripple') && bySlug[params.get('ripple')]) pick(nodes.findIndex((n) => n.p.slug === params.get('ripple')), false);
   })();
-
-  /* ---------------- the people inside the letters ---------------- */
-  $('#insideGrid').innerHTML = PEOPLE_QUOTES.map((q) => {
-    const s = peopleSentence(q); if (!s) return '';
-    const p = bySlug[q.slug];
-    return `<button class="qcard" data-slug="${esc(q.slug)}"><blockquote>“${esc(s)}”</blockquote>
-      <span class="qcard__by"><span class="face" style="${faceStyle(p)}"></span><span><b>${esc(shortName(p.name))}</b><span class="qcard__go">Read the whole letter →</span></span></span></button>`;
-  }).join('');
-  $('#insideGrid').addEventListener('click', (e) => { const c = e.target.closest('.qcard'); if (c) openStory(c.dataset.slug, c); });
 
   /* ---------------- none of us got here alone (the turn) ---------------- */
   (function turn() {

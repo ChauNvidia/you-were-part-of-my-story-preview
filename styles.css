@@ -498,3 +498,19 @@ body.modal-open { overflow: hidden; }
 }
 .center .closing-line { margin: 44px 0 22px; }
 .welcome a { color: var(--gold-soft); text-decoration: underline; white-space: nowrap; }
+.ripple-caption__help { font: 400 17px/1.5 var(--sans); color: #CFC8B4; margin: 14px auto 0; max-width: 560px; }
+#rippleRead { display: inline-block; margin: 14px 0 6px; color: var(--gold-soft, #E8C777); font-size: 16px; }
+#rippleRead[hidden] { display: none; }
+.center .lede { text-wrap: pretty; }
+.teaser { font-size: 1.08rem; }
+.more { margin-top: 4px; }
+.more summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font: 600 15px var(--sans); color: #8E6A26; padding: 8px 0; }
+.more summary::-webkit-details-marker { display: none; }
+.more summary::before { content: '+'; display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; border: 1.5px solid currentColor; border-radius: 50%; font-size: 16px; line-height: 1; }
+.more[open] summary::before { content: '\2212'; }
+.more summary:hover, .more summary:focus-visible { color: var(--navy); }
+.more__close { display: none; }
+.more[open] .more__open { display: none; }
+.more[open] .more__close { display: inline; }
+.more__body { padding-top: 14px; }
+.prose:has(.more[open]) .teaser { display: none; }

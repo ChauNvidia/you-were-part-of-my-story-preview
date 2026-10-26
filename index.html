@@ -57,22 +57,19 @@
       <h2 id="larryTitle" class="display display--room">Larry saw what happened when we came together.</h2>
       <div class="faces faces--row" id="larryFaces" aria-hidden="true"></div>
       <div class="prose">
+        <p class="teaser">A longtime champion of the Gates Millennium Scholars program, Larry Griffith <a href="https://library.scholarsequity.org/letter.html" target="_blank" rel="noopener noreferrer">wrote a letter</a> to more than 20,000 scholars. Many wrote back.</p>
+        <details class="more">
+          <summary><span class="more__open">Read the full background</span><span class="more__close">Show less</span></summary>
+          <div class="more__body">
         <p>During his <a href="https://www.youtube.com/watch?v=w-OYUx1EWHY&amp;t=11863s" target="_blank" rel="noopener noreferrer">closing remarks at the 2026 Pay It Forward Summit</a>, Larry Griffith was inspired by scholars learning from one another and imagining what they could build together. A longtime champion of the Gates Millennium Scholars program, Larry <a href="https://library.scholarsequity.org/letter.html" target="_blank" rel="noopener noreferrer">wrote a letter</a> to more than 20,000 scholars. Many wrote back, sharing how the scholarship shaped not only their own lives but also the communities they now serve.</p>
         <p>Their stories remind us how far one investment can reach. More than a tribute to Larry, these letters show what happens when someone believes in another person, creates an opportunity, or opens a door, often without knowing how far that act will reach.</p>
+          </div>
+        </details>
       </div>
     </div>
   </div>
 
   <div class="wrap">
-    <div class="shelf-head">
-      <h3>The Original Letters Scholars Wrote</h3>
-      <div class="shelf-ctrl">
-        <button class="shelf-btn" id="shelfPrev" aria-label="Show earlier letters">←</button>
-        <button class="shelf-btn" id="shelfNext" aria-label="Show more letters">→</button>
-      </div>
-    </div>
-    <div class="shelf" id="letterShelf" tabindex="0" aria-label="The original letters scholars wrote. Scroll sideways or use the arrows."></div>
-    <p class="shelf-foot"><button class="link" id="shelfToggle" aria-expanded="false">See all of them at once</button></p>
     <p class="contribute">Are you a scholar with your own letter? We'd be happy to include your story. <a href="mailto:admin@scholarsequity.org?subject=My%20story%20%E2%80%94%20I%27d%20like%20to%20be%20included&body=Hi%20SEN%20team%2C%0A%0AI%27d%20love%20to%20be%20included%20in%20You%20Were%20Part%20of%20My%20Story%21%20Here%27s%20what%20I%27m%20sending%3A%0A%0A1%29%20My%20name%20and%20class%20year%3A%0A%0A%0A2%29%20A%20headshot%20photo%3A%0A%28attached%29%0A%0A3%29%20My%20story%20%E2%80%94%20what%20the%20Gates%20Millennium%20Scholarship%20made%20possible%20for%20me%2C%20who%20was%20part%20of%20my%20story%2C%20and%20how%20I%27m%20paying%20it%20forward%3A%0A%0A%0A%0AThank%20you%21">Email us</a> to be considered for additions to this page.</p>
   </div>
 
@@ -94,7 +91,7 @@
     <div class="tabs tabs--dark" role="tablist" aria-label="Ways to explore the stories">
       <button role="tab" id="tab-ripple" aria-controls="panel-ripple" aria-selected="true">Watch it ripple</button>
       <button role="tab" id="tab-theme" aria-controls="panel-theme" aria-selected="false" tabindex="-1">By how they invest in others</button>
-      <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false" tabindex="-1" hidden>The constellation</button>
+      <button role="tab" id="tab-star" aria-controls="panel-star" aria-selected="false" tabindex="-1">The constellation</button>
     </div>
 
     <div id="panel-ripple" role="tabpanel" aria-labelledby="tab-ripple">
@@ -105,6 +102,8 @@
       <div class="ripple-caption" id="rippleCaption" aria-live="polite">
         <p class="ripple-caption__who">Choose a scholar</p>
         <p class="ripple-caption__line">Each one wrote about how they pass it on. Their own words appear here.</p>
+        <p class="ripple-caption__help" id="rippleHelp" hidden></p>
+        <button type="button" class="link" id="rippleRead" hidden>Read their whole letter</button>
       </div>
       <div class="ripple-actions">
         <button class="btn btn--ghost" id="rippleWatch">Watch it ripple</button>
@@ -128,14 +127,6 @@
     </div>
 
     <p class="changemakers">Some scholars turn what they received into projects of their own. Through the <a href="https://www.scholarsequity.org/pay-it-forward-accelerator" target="_blank" rel="noopener noreferrer">Pay It Forward Accelerator</a>, we support Changemakers committed to paying forward the opportunities they've received, with funding, mentorship, and hands-on leadership experience. Six are leading projects across the country right now. <a href="https://www.youtube.com/watch?v=W_y1Vvm-uIc" target="_blank" rel="noopener noreferrer">Watch the Changemaker series</a> to meet them, or <a href="https://givebutter.com/pifa-2026" target="_blank" rel="noopener noreferrer">vote on next year's community project</a>.</p>
-
-    <!-- the people inside the letters -->
-    <div class="inside">
-      <p class="eyebrow eyebrow--gold">Look closely</p>
-      <h3 class="inside__title">Inside these letters, you'll find other people.</h3>
-      <p class="inside__sub">Each scholar wrote about their own journey. Woven through them, in their own words, are the people who made those journeys possible.</p>
-      <div class="inside__grid" id="insideGrid"></div>
-    </div>
   </div>
 </section>
 
@@ -243,11 +234,9 @@
   <div class="wrap wrap--mid">
     <div class="center">
       <p class="eyebrow eyebrow--gold">Keep the ripples going</p>
-      <h2 id="senTitle" class="display display--sm light">Now it's our turn<br>to open the doors.</h2>
+      <h2 id="senTitle" class="display display--sm light">Now it's our turn to open the doors.</h2>
       <p class="lede light lede--tight"><strong>The next generation is waiting for someone to believe in them.</strong></p>
-      <p class="lede light lede--tight">The opportunities that changed our lives existed because someone chose to invest in people they might never meet, whose futures they couldn't yet imagine. Today, we are those people.</p>
-      <p class="lede light lede--tight">Somewhere, there's a student with the same potential we had, waiting for someone to see it. A young person who needs encouragement, a recommendation, a connection, or an opportunity they don't yet know exists.</p>
-      <p class="lede light">The doors that opened for us won't automatically remain open for them. We have to keep opening them.</p>
+      <p class="lede light">Someone invested in us without knowing who we would become. Today, others with that same potential are waiting for their opportunity. The doors opened for us won’t stay open unless we keep opening them.</p>
       <p class="lede light"><strong>That's why we're building Scholars Equity Network</strong>, a community of more than 20,000 Gates Millennium Scholars alumni from all four partner communities. The scholarship invested in each of us as individuals. We exist so scholars can invest in one another, through mentorship, leadership, and the doors we open for each other. Through the <a href="https://www.scholarsequity.org/pay-it-forward-accelerator" target="_blank" rel="noopener noreferrer">Pay It Forward Accelerator</a> and the <a href="https://mosaic.scholarsequity.org/" target="_blank" rel="noopener noreferrer">Pay It Forward Summit</a> we turn those acts into lasting community impact.</p>
       <p class="lede light"><strong>What can you pay forward?</strong> Your time, your talent, your treasure. Start by thanking someone who helped you.</p>
       <p class="closing-line">The story doesn't end with us.</p>
