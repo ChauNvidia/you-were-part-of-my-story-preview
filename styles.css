@@ -541,3 +541,11 @@ body.modal-open { overflow: hidden; }
   .beat[data-beat="3"] { margin-bottom: 8svh; }
   .beat[data-beat="4"] { margin-bottom: 6svh; }
 }
+
+/* the two wordless opening steps: the picture builds as you scroll */
+@media (min-width: 901px) {
+  .turn .beat.beat--spacer { min-height: 26svh; margin: 0; }
+}
+@media (max-width: 900px) {
+  .turn .beat.beat--spacer { min-height: 20svh; margin: 0; }
+}
