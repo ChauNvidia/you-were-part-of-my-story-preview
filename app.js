@@ -436,14 +436,15 @@
     const enc = (o) => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     const dec = (s) => { try { let b = s.replace(/-/g, '+').replace(/_/g, '/'); while (b.length % 4) b += '='; return JSON.parse(decodeURIComponent(escape(atob(b)))); } catch (_) { return null; } };
     const link = () => `${GIFT_URL}#for=${enc(data())}`;
-    const plain = () => `${salutation(state)}\n\n${state.msg.trim()}\n\n${state.from.trim() ? 'With gratitude,\n' + state.from.trim() + (classLine(state.cls) ? '\n' + classLine(state.cls) : '') + '\n\n' : (classLine(state.cls) ? classLine(state.cls) + '\n\n' : '')}You were part of my story. ${LEAD.replace('I wanted you', 'I wanted you')}\nOpen your card here: ${link()}\n\nA gift from Scholars Equity Network`;
+    const intro = () => (state.to.trim() ? `${state.to.trim()}, I made you something.` : 'I made you something.');
+    const plain = () => `${intro()}\nOpen it here: ${link()}`;
     const ready = () => { if (!state.msg.trim()) { $('#giftStatus').textContent = 'Write a few words first, then copy or share.'; msg.focus(); return false; } return true; };
-    $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; tally('copied'); $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the message from the card.'; });
+    $('#copyBtn').addEventListener('click', async () => { if (!ready()) return; tally('copied'); $('#giftStatus').textContent = (await copyText(plain())) ? 'Copied. Paste it into an email or a text.' : 'Please select and copy the link from your browser.'; });
     $('#shareBtn').addEventListener('click', async () => {
       if (!ready()) return;
-      if (navigator.share) { try { await navigator.share({ title: 'You were part of my story', text: `${salutation(state)} ${state.msg.trim()}`, url: link() }); tally('shared'); return; } catch (_) { return; } }
+      if (navigator.share) { try { await navigator.share({ title: 'You were part of my story', text: intro(), url: link() }); tally('shared'); return; } catch (_) { return; } }
       tally('copied');
-      $('#giftStatus').textContent = (await copyText(plain())) ? 'Sharing is not available in this browser, so we copied your message instead.' : 'Please copy the message from the card.';
+      $('#giftStatus').textContent = (await copyText(plain())) ? 'Sharing is not available in this browser, so we copied the link instead.' : 'Please copy the link from your browser.';
     });
 
     // Save as a picture (1080 x 1350)
