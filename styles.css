@@ -514,3 +514,12 @@ body.modal-open { overflow: hidden; }
 .more[open] .more__close { display: inline; }
 .more__body { padding-top: 14px; }
 .prose:has(.more[open]) .teaser { display: none; }
+
+/* polish pass: spacing, tabs on small screens, touch targets */
+.field__row { margin-bottom: 18px; }
+@media (max-width: 640px) {
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 2px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { white-space: nowrap; flex: 0 0 auto; padding: 12px 9px; font-size: 14px; }
+}
+@media (pointer: coarse) { .link { padding: 10px 0; } }
