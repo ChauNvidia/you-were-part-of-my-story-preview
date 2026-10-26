@@ -282,7 +282,7 @@
 
     const set = (n) => { sec.className = 'turn ' + ['s1', 's2', 's3', 's4'].slice(0, n).join(' '); $$('.beat', sec).forEach((b) => b.classList.toggle('is-active', Number(b.dataset.beat) === n)); };
     if (params.get('stage')) { set(Number(params.get('stage'))); return; }
-    set(1);
+    set(3);
     if (reduce || !('IntersectionObserver' in window)) { $$('.beat', sec).forEach((b) => b.classList.add('is-active')); sec.className = 'turn s1 s2 s3 s4'; return; }
     const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) set(Number(e.target.dataset.beat)); }), { rootMargin: '-42% 0px -42% 0px' });
     $$('.beat', sec).forEach((b) => io.observe(b));
