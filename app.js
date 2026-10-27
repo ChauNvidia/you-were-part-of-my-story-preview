@@ -494,7 +494,7 @@
     }
     function closeGift(toStories) {
       overlay.hidden = true; document.body.classList.remove('modal-open');
-      if (!preview) { $('#welcome').hidden = false; history.replaceState(null, '', location.pathname + '#stories'); }
+      if (!preview) { history.replaceState(null, '', location.pathname + location.search); window.scrollTo(0, 0); return; }
       if (toStories) { const t = $('#stories'); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
     }
     $('#giftGo').addEventListener('click', () => closeGift(true));

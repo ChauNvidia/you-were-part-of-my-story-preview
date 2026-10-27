@@ -312,8 +312,6 @@ body.modal-open { overflow: hidden; }
 .sec--navy .theme p { color: #B9B7AE; }
 .sec--navy .constellation__label { color: #CFCBC0; }
 .sec--navy .constellation { border: 1px solid rgba(217,190,130,.22); }
-.welcome { border-left: 3px solid var(--gold-soft); background: rgba(217,190,130,.1); padding: 16px 20px; margin: 0 0 36px; font-size: 16px; color: #EDE7D6; }
-.welcome[hidden] { display: none; }
 
 .inside { margin-top: 96px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,.14); }
 .inside__title { font: 500 clamp(28px, 4vw, 40px)/1.15 var(--serif); margin: 0 0 12px; color: #F4EEDD; }
@@ -497,7 +495,6 @@ body.modal-open { overflow: hidden; }
   .builder fieldset:nth-of-type(3) { order: 4; }
 }
 .center .closing-line { margin: 44px 0 22px; }
-.welcome a { color: var(--gold-soft); text-decoration: underline; white-space: nowrap; }
 .ripple-caption__help { font: 400 17px/1.5 var(--sans); color: #CFC8B4; margin: 14px auto 0; max-width: 560px; }
 #rippleRead { display: inline-block; margin: 14px 0 6px; color: var(--gold-soft, #E8C777); font-size: 16px; }
 #rippleRead[hidden] { display: none; }
